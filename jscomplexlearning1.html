@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Complex Learning 1</title>
+</head>
+<body>
+<h1 style="display: inline">Hello,</h1> loftschool!
+<br>
+<button id="myButton">click</button>
+<div id="myRez"></div>
+<script>
+var button = document.querySelector('#myButton')
+button.addEventListener('click', function () {
+    var a=['hello', 'loftschool', '!!!']
+    for (var i=0;i<a.length; i++) {
+        console.log(a[i])
+    }
+//debugger
+let myRez =  document.getElementById("myRez") //getElementsByClassName
+myRez.innerHTML = a[i-1]
+})
+</script>
+</body>
+</html>
