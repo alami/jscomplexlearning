@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 10 Promise Load </title>
+</head>
+<body>
+<script>
+    const url1 = 'https://images.pexels.com/photos/4862663/pexels-photo-4862663.jpeg'
+    const url2 = 'https://images.pexels.com/photos/5393816/pexels-photo-5393816.jpeg'
+    const url3 = 'https://images.pexels.com/photos/4286744/pexels-photo-4286744.jpeg'
+function loadImage (url) {
+    return new Promise( (resolve => {
+        const img = new Image();
+        img.height = 200;
+        img.src = url  //--значение кот.передали в аргумент
+        document.body.append(img) //--можно хранит и вне, но оставим для консистентности
+        img.addEventListener('load', ()=>{   // <--а когда можно вызвать
+                resolve() // т.е.выполнена загрузка картинки успешо
+            })
+        })
+    );
+}
+loadImage(url1)
+    .then( ()=> {
+        console.log('картинка 1 загружена')
+        loadImage(url2)
+            .then(()=> {
+                console.log('картинка 2 загружена')
+                loadImage(url3)
+                    .then(()=> {
+                        console.log('картинка 3 загружена')
+                    })
+            })
+       })
+</script>
+</body>
+</html>
