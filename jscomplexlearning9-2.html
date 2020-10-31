@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Js complex learning</title>
+</head>
+<body>
+
+<input type="text" id="phone">
+<div id="container" style="padding: 20px 0">
+    Hello, Loftschool !
+</div>
+    <button id="myButton">нажми меня !</button>
+
+<script>
+//----------------- 9.3 DOM input
+const phone = document.querySelector('#phone')
+phone.addEventListener('keydown', function (event){
+    let isDigit = false
+    let isDash = false
+    let isControl = false
+    if(event.key >= 0 || event.key <= 9 ) isDash = true
+    if(event.key == '-' ) isDigit = true
+    if(event.key == 'ArrowLeft' || event.key == 'ArrowRight'||event.key == 'Backspace') isControl = true
+    if (!isDigit && !isDash && !isControl)  event.preventDefault()
+})
+
+//----------------- 9.2 DOM events
+    const myButton = document.querySelector('#myButton')
+    const container = document.querySelector('#container')
+
+    myButton.addEventListener('click', function (){
+        console.log('клик на кнопке')
+    })
+    container.addEventListener('click', function (){
+        container.style.color = 'red'
+    })
+
+</script>
+</body>
+</html>

@@ -372,11 +372,44 @@ const student = {}
 хотя        typeof Symbol Iterator === 'symbol'
 ---------------------------------------------------------------------------------------
 09 DOM
-
 ---------------------------------------------------------------------------------------
 1. DOM (Document Object Model).mp4
-2. DOM-события.mp4
+узлы - откр.элем. - аттрибуты - текстовый узел - др.узлы - закр.элем.
+=> HTML page = DOM structurs = DOM дерево
+    "document" имеет кучу команд, в каждом браузере
+8-34 --найти и изменить
+     const element = document.querySelector('#container')
+     element.style.color = 'red'
+     сonst element1 = document.querySelector('.hello')
+     element1.textContent = 'Новый текст'
+12-13 --создание
+    const element1 = document.createElement('div')
+    element1.textContent = 'Новый текст div'
+    container.appendChild(element1)
+
+2. DOM-события.mp4  <- нажатия кнопок, ссылок, мышкой по экрану
+0-51 мы можем перхватывать и исполнять свой код
+1-27 научимся добавлять события на разные кнопки
+        const myButton = document.querySelector('#myButton')
+        myButton.addEventListener('click', function (){
+            console.log('клик на кнопке')
+        })
+9-27 (+)модификация дом-дерева
+11-24 const phone = document.querySelector('#phone')
+      phone.addEventListener('keydown', function (event){
+          let isDigit = false
+          if(event.key >= 0 || event.key <= 9 ) isDigit = true
+          if (isDigit) console.log('digit')
+          else event.preventDefault() --
+      })
+12-11 действия по умолчанию - не у всех полей, у текстовых - есть
+17-27 нет реакции на <-, ->, del, ...
 3. Обработка ввода.mp4
+const phone = document.querySelector('#phone')
+phone.addEventListener('keydown', function (event){ <--особая -всегда приходит 1 аргумент
+    console.log('keydown')          - спец объект с инфо о событии
+})
+
 4. Работа с формами.mp4
 5. Рабочий пример.mp4
 6. Обход DOM-дерева.mp4

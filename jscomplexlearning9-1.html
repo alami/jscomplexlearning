@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Js complex learning</title>
+</head>
+<body>
+
+<div id="container">
+    <div class="hello" id="divid1">Hello </div>
+    <div class="div2" id="divid2">World</div>
+    <div class="div3" id="divid3">Bye-bye</div>
+</div>
+
+<script>
+    const container = document.querySelector('#container')
+    container.style.color = 'red'
+    container.style.fontSize = '30px'
+    const element = document.querySelector('.hello')
+    element.textContent = 'Новый текст'
+    const element1 = document.createElement('div')
+    element1.textContent = 'Новый текст div'
+    container.appendChild(element1)
+    const element2 = document.createElement('span')
+    container.appendChild(element2)
+    element2.textContent = 'Новый текст span'
+    /*if (100 < 10)
+        var a = 10
+    a = 10
+    console.log(a)
+    for (var b = 0; b < 3; b++) {
+        console.log(b)
+    }
+    console.log(b)
+    var sum = function (a, b) {
+        return a + b
+    }
+    console.log(sum(2, 3))*/
+
+</script>
+</body>
+</html>
