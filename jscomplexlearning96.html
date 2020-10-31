@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning ch 9.6</title>
+</head>
+<body>
+<div class="class-1">
+    <a href="#" id="myLink">LoftSchool</a>
+</div>
+<script>
+    const myLink = document.querySelector('#myLink')
+    let cursor = myLink
+    while (cursor = cursor.parentNode)
+        console.log(cursor)
+</script>
+</body>
+</html>

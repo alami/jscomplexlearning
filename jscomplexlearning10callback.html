@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 10 Callback </title>
+</head>
+<body>
+<!--<img height="200" src='https://images.pexels.com/photos/4862663/pexels-photo-4862663.jpeg'>-->
+<!--<img height="200" src='https://images.pexels.com/photos/5393816/pexels-photo-5393816.jpeg'>-->
+<!--<img height="200" src='https://images.pexels.com/photos/4286744/pexels-photo-4286744.jpeg'>-->
+
+<script>
+    const url1 = 'https://images.pexels.com/photos/4862663/pexels-photo-4862663.jpeg'
+    const url2 = 'https://images.pexels.com/photos/5393816/pexels-photo-5393816.jpeg'
+    const url3 = 'https://images.pexels.com/photos/4286744/pexels-photo-4286744.jpeg'
+    const img = new Image();
+    img.height = 200;
+    img.src = url1
+    document.body.append(img)
+    img.addEventListener('load', ()=>{
+        const img = new Image();
+        img.height = 200;
+        img.src = url2
+        document.body.append(img)
+        img.addEventListener('load', ()=> {
+            const img = new Image();
+            img.height = 200;
+            img.src = url3
+            document.body.append(img)
+            img.addEventListener('load', ()=> {
+                console.log('Все картинки загружены')
+            })
+          })
+        })
+</script>
+</body>
+</html>
