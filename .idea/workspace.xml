@@ -4,6 +4,7 @@
     <list default="true" id="0d28e6b3-970f-422c-a6fd-86f01b082a09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jscomplexlearning.txt" beforeDir="false" afterPath="$PROJECT_DIR$/jscomplexlearning.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jscomplexlearning10promiseload3.html" beforeDir="false" afterPath="$PROJECT_DIR$/jscomplexlearning10promiseload3.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +45,8 @@
       <workItem from="1604111037730" duration="5411000" />
       <workItem from="1604120072384" duration="1094000" />
       <workItem from="1604162478700" duration="10057000" />
+      <workItem from="1604178205803" duration="89000" />
+      <workItem from="1604200963376" duration="4630000" />
     </task>
     <servers />
   </component>
