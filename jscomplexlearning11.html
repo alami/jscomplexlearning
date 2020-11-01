@@ -5,10 +5,30 @@
     <title>jscomplexlearning 11 </title>
 </head>
 <body>
-<BUTTON id="byButton"> Загрузить</BUTTON>
+<BUTTON id="myButton"> Загрузить</BUTTON>
 <ul id="list"></ul>
 <script>
-    const url="https://github.com/smelukov/citiesTest/blob/master/cities.json"
+    const url="https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json"
+    const myButton = document.querySelector('#myButton')
+    const list = document.querySelector(`#list`)
+
+    document.addEventListener('click', e => {
+        if (e.target.tagName === 'LI')
+           console.log(e.target.textContent)
+    })
+
+    myButton.addEventListener('click', async ()=> {
+        const response = await fetch(url)   //получаем города
+        const cities = await response.json() //вынуть данные в формате json
+        const fragment = document.createDocumentFragment()
+        for (const city of cities) {
+            const li = document.createElement('li')
+            li.textContent = city.name
+
+            fragment.appendChild(li)
+        }
+        list.appendChild(fragment)
+    })
 </script>
 </body>
 </html>

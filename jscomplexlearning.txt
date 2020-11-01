@@ -1,7 +1,6 @@
 ---------------------------------------------------------------------------------------
-Мелюков
-Сергей
-Главный преподаватель курса «Senior Engineer фронтенд архитектуры в компании Avito »
+Мелюков Сергей
+Главный преподаватель курса «Senior Engineer фронтенд архитектуры в компании Avito»
 «Комплексное обучение JavaScript »
 Введение
 0-00
@@ -914,18 +913,75 @@ delay(1000)
     Document Fragment
     Делегирование событий
     Генерирование событий
+---------- Document Fragment ----------
      github список городов, можно грузить fetch() запросом
 2-14 https://github.com/smelukov/citiesTest/blob/master/cities.json
-    в ДОМ-дерево в список
-Q:
+    конвертировать в ДОМ-дерево в список
+3-53 использолвать async/await, вместо промисов
+4-38 1й вар)     async function init() {
+                     const response = await fetch(url)
+                 }
+7-05 запрос к самому файлу ,
+    const url="https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json"
+ а не к веб страничке "https://github.com/smelukov/citiesTest/blob/master/cities.json"
 
----------- Document Fragment ----------
+    const myButton = document.querySelector('#myButton')
+    const list = document.querySelector(`#list`)
+    myButton.addEventListener('click', ()=> {
+        init()
+    })
+    async function init() {
+        const response = await fetch(url)   //получаем города
+        const cities = await response.json() //вынуть данные в формате json
+        console.log(cities)
+    }
+7-49 избавимся от init()
+    myButton.addEventListener('click', async ()=> {
+        const response = await fetch(url)   //получаем города
+        const cities = await response.json() //вынуть данные в формате json
+        console.log(cities)
+        for (const city of cities) {
+            const li = document.createElement('li')
+            li.textContent = city.name
+            list.appendChild(li) --50 раз обратились в ДОМ-дерево
+        }
+    })
+10-15 отдельный класс задач - получаем данные с сервера, и где
+11-03 в list.appendChild(li) --50 раз обратились в ДОМ-дерево - дорогая операция
+ => Document Fragment -контейнер, куда много раз добвляем элементы, и пототм 1 командой разом слить в ДОМ-дерево
+13-02 const fragment = document.createDocumentFragment()
+        for ..{
+            ..
+            fragment.appendChild(li) ---добавлять не в list, а fragment
+        }
+      list.appendChild(fragment)  ---добавить сам фрагмент
+14-29 т.к. добавляется не сам контейнер, а его содержимое !!
+    добавлять большое кол-во элементов за 1 заход
+
 ---------- Делегирование событий ----------
+17-10 на эти города хотим повесить нажатия мышки 'click'
+    li.textContent = city.name
+    li.addEventListener('click', e => {  <---событие
+        console.log(e.target.textContent)
+    })         для кого ---^ ^---текст содержимого
+19-28 можно записать и через замыкание
+    li.addEventListener('click', e => {  <---событие
+        console.log(li.textContent)
+19-51 тоже не выгодно вешать столько обработчиков событий
+20-02 => Делегирование событий на вышестоящий элемент
+     погружение события - capture, всплытие события - buble
+22-06 убираем и  вешаем на документ
+    document.addEventListener('click', e => { --код не меняется, меняется лишь на кой элем вешаем
+        console.log(e.target.textContent)
+    })
+23-43 но реагирует и на "кнопку" -> тект кнопки
+ и даже на нажатие на пустое место -> увидеть все соджержимое стр-цы!
+24-47 => отсеять только для элементов "li" - фильтрация событий
 ---------- Генерирование событий ----------
+28-39 не нажатием клавиш и кнопок мыши, а прямо из кода (искусственные события)
 
 
-
-
+59-00
 ---------------------------------------------------------------------------------------
 12 Работа с сетью
 ---------------------------------------------------------------------------------------
@@ -1036,3 +1092,5 @@ _homework\05\video.txt
 _homework\05\Неделя #5 Работа над ВП №1 _ LoftSchool.pdf
 _homework\06\ВП2.psd
 _homework\06\Неделя #6 Работа над ВП №2 _ LoftSchool.pdf
+
+git rm -f .idea/workspace.xml
