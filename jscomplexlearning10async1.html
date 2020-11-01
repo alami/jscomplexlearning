@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 10 Async 1 </title>
+</head>
+<body>
+<script>
+function delay (ms) {
+    return new Promise(resolve => {
+        setTimeout(()=>resolve(), ms)
+    })
+}
+async function fn () {
+    console.log('до')
+    await delay(1000)
+    console.log('1')
+    await delay(1000)
+    console.log('2')
+    await delay(1000)
+    console.log('после')
+}
+fn()
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 10 Async 1 </title>
+</head>
+<body>
+<script>
+function delay (ms) {
+    return new Promise(resolve => {
+        setTimeout(()=>resolve(Math.random()), ms) //--передаем в resolve random
+    })                         //--т.е.на каждый delay, ,будет возв-ся какое то значение
+}
+async function fn () {
+    const r = await delay(1000)
+    console.log(r)
+    const r1 = await delay(1000)
+    console.log(r1)
+    const r2 = await delay(1000)
+    console.log(r2)
+    const r3 = await delay(1000)
+    console.log(r3)
+}
+fn()
+
+</script>
+</body>
+</html>

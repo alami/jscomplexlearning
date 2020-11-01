@@ -4,12 +4,14 @@
     <list default="true" id="0d28e6b3-970f-422c-a6fd-86f01b082a09" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jscomplexlearning.txt" beforeDir="false" afterPath="$PROJECT_DIR$/jscomplexlearning.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jscomplexlearning10promiseload3.html" beforeDir="false" afterPath="$PROJECT_DIR$/jscomplexlearning10promiseload3.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="main" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,6 +32,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\Downloads\work\jscomplexlearning" />
       <recent name="C:\Users\Acer\Downloads\work\jscomplexlearning" />
     </key>
   </component>
@@ -47,11 +50,15 @@
       <workItem from="1604162478700" duration="10057000" />
       <workItem from="1604178205803" duration="89000" />
       <workItem from="1604200963376" duration="4630000" />
+      <workItem from="1604221639244" duration="7961000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state width="498" height="446" key="SwitcherDM" timestamp="1604112715018">
