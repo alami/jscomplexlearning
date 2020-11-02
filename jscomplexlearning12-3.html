@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 12-2 </title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+        .friend {
+            color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+<BUTTON id="loadButton"> Загрузить</BUTTON>
+<div id="result"></div>
+<script>
+    const loadButton = document.querySelector('#loadButton')
+    const result = document.querySelector(`#result`)
+    loadButton.addEventListener('click',()=>{
+        fetch('friends.json')
+            .then((friends)=>{
+                result.innerHTML = ''
+                for (const friend of friends) {
+                    const friendsDOM = createFriendNode(friend)
+                    result.appendChild(friendsDOM)
+                }
+            })
+            .catch(()=>{
+                console.error('файл не найден или др.проблемы')
+            })
+    })
+    function fetch(url) {
+        return new Promise((resolve,reject) => {
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', url)
+            xhr.responseType = "json"
+            xhr.send();
+            xhr.addEventListener('load', () => {
+                if (xhr.status >= 400) {
+                    reject() //console.log('файл не найден')
+                } else {
+                    resolve(xhr.response)
+                    /*const friends = xhr.response//JSON.parse(xhr.responseText)
+                      console.log(friends) ...*/
+                }
+            })
+            xhr.addEventListener('error', reject)
+            xhr.addEventListener('abort', reject)
+        })
+    }
+    function createFriendNode (friend) {
+        const div=document.createElement('div')
+        div.classList.add('friend')
+        div.textContent = `${friend.name} ${friend.lastName}`
+        return div
+    }
+</script>
+</body>
+</html>
