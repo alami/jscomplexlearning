@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------------------
 Мелюков Сергей
 Главный преподаватель курса «Senior Engineer фронтенд архитектуры в компании Avito»
-«Комплексное обучение JavaScript »
+«Комплексное обучение JavaScript»
 Введение
 0-00
 1-04
@@ -979,8 +979,56 @@ delay(1000)
 24-47 => отсеять только для элементов "li" - фильтрация событий
 ---------- Генерирование событий ----------
 28-39 не нажатием клавиш и кнопок мыши, а прямо из кода (искусственные события)
+33-48 const myButton = document.querySelector('#myButton')
+          button.addEventListener('click', () => {
+                //---button --обраб событий
+              })
+button = {         --наша кнопка внутри устроена так
+  eventHandlers: [ --объект
+    click: [       --ключ события <-значения-> массивы
+        () => {..} --обработчики
+        () => {..}
+40-11
+button = {
+   eventHandlers: {},
+   addEventListener (event, handler) {
+    if (!this.eventHandlers.hasOwnProperty(event))  - есть ли такое св-во?
+      this.eventHandlers [event] = []   //нет => надо его создать с пустым массивом
+    if(!this.eventHandlers[event].includes())
+      this.eventHandlers.push (handler)  // и добавить 1й обработчик событий
+   }
+}
+42-33 1 и тот же обработчик добавить нельзя, т.е иметь только уникальные значения в массиве
+   =>  можно упростить структурой "Set" =>
+44-25
+button = {
+   eventHandlers: {}
+   addEventListener (event, handler) {
+     if (!this.eventHandlers.hasOwnProperty(event))
+         this.eventHandlers [event] = new Set()
+      this.eventHandlers.add (handler)  //--вмсесто push для массивов
+45-15
+  dispatchEvent (event:Event) { --если какое то событий произошло
+        }
+  }
+4541 const event = new Event('click') --вот что делает браузер, это можем и мы
+     button.dispatchEvent(event)  --создает объект и пытается обработать кнопку
+--будет вызывать обработчики
 
+52.12     const button = document.querySelector('#myButton')
+          const target = document.querySelector('#target')
 
+          button.addEventListener('click', async () => {
+              const event = new CustomEvent ('loftschool')
+              target.dispatchEvent(event)
+          })
+          target.addEventListener('loftschool', e => {
+              console.log(e.type)
+          })
+    не только на <div> но и на "document"
+53-34 есть еще removeEventListener
+54-44  т.е. addEventListener - добавляеть
+         dispatchEvent - перебирает event
 59-00
 ---------------------------------------------------------------------------------------
 12 Работа с сетью

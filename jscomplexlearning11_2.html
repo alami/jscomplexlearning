@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 11 2 </title>
+</head>
+<body>
+<BUTTON id="myButton"> Загрузить</BUTTON>
+<div id="target"></div>
+<script>
+    const button = document.querySelector('#myButton')
+    const target = document.querySelector('#target')
+
+    button.addEventListener('click', async () => {
+        const event = new CustomEvent ('loftschool')
+        target.dispatchEvent(event)
+    })
+    target.addEventListener('loftschool', e => {
+        console.log(e.type)
+    })
+
+</script>
+</body>
+</html>
