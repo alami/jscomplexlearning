@@ -8,7 +8,6 @@
 <BUTTON id="loadButton"> Загрузить</BUTTON>
 <div id="result"></div>
 <script>
-    const url="https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json"
     const loadButton = document.querySelector('#loadButton')
     const result = document.querySelector(`#result`)
     loadButton.addEventListener('click',()=>{
@@ -20,7 +19,6 @@
                 console.log('файл не найден')
             }
             else result.innerHTML = xhr.responseText
-
         })
     })
 </script>
