@@ -1117,6 +1117,55 @@ promise - это способ оргции асинхр работы, где
 7-46 здесь можно повесить обработчики еще на 2 события: error & abort, тоже вызываем reject()
 8-12 а чтобы сократить по максимуму, сразу передать reject, ведь это ф-ция
 9-20 т.о.мы промисифицировали наш fetch()
+
+9-30 в совеременных браузерах есть эта ф-ция fetch(), посмотрим
+10-19 проверим в консоли > fetch
+     ƒ fetch() { [native code] } --те встроенный в браузер
+11-20 fetch('friends.json').then(response => {
+       console.log(response)
+       })
+посмотрим, многочего , но нет никакого св-ва, содержащего тело сообщения, где оно?
+12-02 он имеет 2 варианта ответа: "txt" и "json"
+=> fetch('friends.json').then(response => {
+       console.log(response.text()) ---по идее должен вернться рез-т в текстовом виде
+       })                           --на самом деле возвращает новый промис
+--------------------------------------------
+Promise {<pending>}__proto__: Promise[[PromiseState]]: "fulfilled"[[PromiseResult]]: undefined VM180:2
+Promise {<pending>}__proto__: Promise[[PromiseState]]: "fulfilled"[[PromiseResult]]: "[
+  {
+    "name": "Ivan",
+    "lastName": "Petrov"
+  },........................................
+]"
+12-29 т.е.мы должно на этот промис повесить еще 1 .then(), где и получим текст
+12-41  fetch('friends.json').then(response => {
+            response.text().then(text => {
+                    console.log(text)
+                    })
+            })
+12-55 fetch()
+1).then() - возвращает объект, кот  описывает "response" от сервера,но никак не содержимое,
+2) чтобы получить содержимое, надо вызвать метод .text(), кот возвращат промис,
+3) применяя .then() к нему получим доступ к уже содежимому
+
+13-07 помимо метода .text(), есть еще метод .json() .. аналогично приходит массив
+13-42 возьмем поледния и скопируем е программу
+14-14 итого loadButton.addEventListener('click',()=>{
+fetch('friends.json') --вызываем
+  .then(response => { --ждем пока прийдет ответ от сервера, промис разрешится
+    response.json().then(friends => {--обращаемся к ответу,он возвращает новый промис
+        result.innerHTML = ''        \--и, когда новый промис разрешиться, уже обрабатываем
+        for (const friend of friends) {
+            const friendsDOM = createFriendNode(friend)
+            result.appendChild(friendsDOM)
+        }
+    })
+})
+.catch(()=>{ ---замечательно впишется старый
+    console.error('файл не найден или др.проблемы')
+})
+18-02 смотрим на сайте "caniuse.com" поддержку fetch()
+
 ------------------------------
 12-4 WebSocket.mp4
 ------------------------------
