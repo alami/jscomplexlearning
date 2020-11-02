@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 12-2 </title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+        .friend {
+            color: rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+<BUTTON id="loadButton"> Загрузить</BUTTON>
+<div id="result"></div>
+<script>
+    const loadButton = document.querySelector('#loadButton')
+    const result = document.querySelector(`#result`)
+    loadButton.addEventListener('click',()=>{
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET','friends.json')
+        xhr.responseType = "json"
+        xhr.send();
+        xhr.addEventListener('load', ()=>{
+            if (xhr.status >= 404) {
+                console.log('файл не найден')
+            }
+            else {
+                const friends = xhr.response//JSON.parse(xhr.responseText)
+                console.log(friends)
+                result.innerHTML = ''
+                for (const friend of friends) {
+                    const friendsDOM = createFriendsDOM(friend)
+                    result.appendChild(friendsDOM)
+                }
+            }
+        })
+    })
+    function createFriendsDOM (friend) {
+        const div=document.createElement('div')
+        div.classList.add('friend')
+        div.textContent = `${friend.name} ${friend.lastName}`
+        return div
+    }
+</script>
+</body>
+</html>

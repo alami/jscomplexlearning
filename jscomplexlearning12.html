@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 11 </title>
+</head>
+<body>
+<BUTTON id="loadButton"> Загрузить</BUTTON>
+<div id="result"></div>
+<script>
+    const loadButton = document.querySelector('#loadButton')
+    const result = document.querySelector(`#result`)
+    loadButton.addEventListener('click',()=>{
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET','content.txt')
+        xhr.send();
+        xhr.addEventListener('load', ()=>{
+            if (xhr.status >= 404) {
+                console.log('файл не найден')
+            }
+            else result.innerHTML = xhr.responseText
+        })
+    })
+</script>
+</body>
+</html>

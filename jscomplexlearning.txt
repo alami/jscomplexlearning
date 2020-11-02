@@ -1034,7 +1034,57 @@ button = {
 12 Работа с сетью
 ---------------------------------------------------------------------------------------
 12-1 Асинхронные сетевые запросы.mp4
+<BUTTON id="loadButton"> Загрузить</BUTTON>
+<div id="result"></div>
+<script>
+    const loadButton = document.querySelector('#loadButton')
+    const result = document.querySelector(`#result`)
+    loadButton.addEventListener('click',()=>{
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET','content.txt')
+        xhr.send();
+        xhr.addEventListener('load', ()=>{
+            if (xhr.status >= 404) {
+                console.log('файл не найден')
+            }
+            else result.innerHTML = xhr.responseText
+        })
+    })
 12-2 JSON.mp4
+1-03 массив объектов -
+const friends = [
+    {name:'Ivan', lastName: 'Petrov'},
+    {name:'Andrey', lastName: 'Ivanov'},
+    ]
+     можно хранить в отд.файлых - носят расширение JSON - friends.json
+1-58 !! все имена и значение в 2х кавычках -> вылидный JSON
+2-53 jscomplexlearning12-2.js - получим его
+3-05 если из объектов сделали строку, то почему из строки не воссоздать объект ?
+3-17 для этого в JS встроен спец объект JSON c 2мя методами
+stringify - любой объект превращать в строку
+parse - обратная операция, с кот можно рабоать: push,pop...
+5-03                 const friends = JSON.parse(xhr.responseText)
+5-39 самый обчный JSON массив - делать что ззотим, напр, ф-цию
+    function createFriendsDOM (friend) {
+        const div=document.createElement('div')
+        div.classList.add('friend')
+        div.textContent = `${friend.name} ${friend.lastName}`
+        return div
+    }
+7-37 перебираем массив
+9-26 повтор
+10-17 упростим: XMLHttpRequest - заранее умеет принимать данные в JSON формате !
+    если точно данные будут приходить в JSON формате
+10-42 перед отправкой запроса
+        xhr.responseType = "json"
+=> не нужна конвертация
+                const friends = JSON.parse(xhr.responseText)
+11-17 и обращаться не к responseText, а к xhr.response
+12-26 ..перед добавленим, надо бы очищать <div> от старых объектов
+                result.innerHTML = ''
+
+
+------------------------------
 12-3 Fetch.mp4
 12-4 WebSocket.mp4
 12-5 Service Worker.mp4
