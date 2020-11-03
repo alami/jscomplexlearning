@@ -21,7 +21,12 @@
     const result = document.querySelector(`#result`)
     loadButton.addEventListener('click',()=>{
         fetch('friends.json')
-          .then(response =>  response.json())
+          .then(response => {
+              if (response.status >= 400) {
+                  return []
+              }
+              return response.json()
+          })
           .then(friends => {
              result.innerHTML = ''
              for (const friend of friends) {
