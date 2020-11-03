@@ -21,16 +21,15 @@
     const result = document.querySelector(`#result`)
     loadButton.addEventListener('click',()=>{
         fetch('friends.json')
-          .then(response => {
-              response.json().then(friends => {
-                result.innerHTML = ''
-                for (const friend of friends) {
-                    const friendsNode = createFriendNode(friend)
-                    result.appendChild(friendsNode)
+          .then(response =>  response.json())
+          .then(friends => {
+             result.innerHTML = ''
+             for (const friend of friends) {
+                const friendsNode = createFriendNode(friend)
+                result.appendChild(friendsNode)
                 }
              })
-          })
-        .catch(()=> console.error('файл не найден или др.проблемы'))
+           .catch(()=> console.error('файл не найден или др.проблемы'))
         })
     function createFriendNode (friend) {
         const div=document.createElement('div')

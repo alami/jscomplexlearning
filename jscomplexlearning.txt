@@ -1154,16 +1154,34 @@ Promise {<pending>}__proto__: Promise[[PromiseState]]: "fulfilled"[[PromiseResul
 fetch('friends.json') --вызываем
   .then(response => { --ждем пока прийдет ответ от сервера, промис разрешится
     response.json().then(friends => {--обращаемся к ответу,он возвращает новый промис
-        result.innerHTML = ''        \--и, когда новый промис разрешиться, уже обрабатываем
-        for (const friend of friends) {
+14-15   result.innerHTML = ''        \--и, когда новый промис разрешиться, уже обрабатываем
+14-31   for (const friend of friends) {--сработает обработчик и сделаем работу
             const friendsDOM = createFriendNode(friend)
             result.appendChild(friendsDOM)
         }
     })
 })
-.catch(()=>{ ---замечательно впишется старый
-    console.error('файл не найден или др.проблемы')
-})
+14-00 .catch(()=>{ ---замечательно впишется старый
+        console.error('файл не найден или др.проблемы')
+        })
+14-41 использовали ф-цю fetch(), кот встроена в браузер
+14-50 сожно еще более упростить нагромождение [14-15..14-31]
+14-58 ВСПОМНИМ, если возвращаем из1го обратчика .then() другой промис,
+15-02 то соотвественно след..then() будет ждать пока этот промис разрешится
+15-15 и только потом этот ---^ будет выполнен
+15-34 а т.к.конструкция однострочная, то можем заинлайнить
+    loadButton.addEventListener('click',()=>{
+        fetch('friends.json')
+          .then(response =>  response.json())
+          .then(friends => {
+             result.innerHTML = ''
+             for (const friend of friends) {
+                const friendsNode = createFriendNode(friend)
+                result.appendChild(friendsNode)
+                }
+             })
+           .catch(()=> console.error('файл не найден или др.проблемы'))
+        })
 18-02 смотрим на сайте "caniuse.com" поддержку fetch()
 
 ------------------------------
