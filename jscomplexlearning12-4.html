@@ -23,7 +23,7 @@
         fetch('friends.json')
           .then(response => {
               if (response.status >= 400) {
-                  return []
+                  return Promise.reject()
               }
               return response.json()
           })
