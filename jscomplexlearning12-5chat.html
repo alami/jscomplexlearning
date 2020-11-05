@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 12-5 Web socket Chat </title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+        .head {
+            padding:5px;
+            background-color: aliceblue
+        }
+        .list-group {
+            padding: 100px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="row">
+    <div class="head">
+        <h3>Сообщения</h3>
+    </div>
+    <ul class="list-group" id="messageContainer">
+    </ul>
+</div>
+<div class="row">
+    <div class="col-sm-10">
+        <input type="text" class="form-contorl" id="messageText" placeholder="введите сообщение...">
+    </div>
+    <div class="col-sm-2">
+        <button class="btn btn-default" id="sendButton"> отправить</button>
+    </div>
+</div>
+<script>
+    const sendButton = document.querySelector('#sendButton')
+    const result = document.querySelector(`#result`)
+    loadButton.addEventListener('click',()=>{
+        fetch('friends.json')
+          .then(response => {
+              if (response.status >= 400) {
+                  return Promise.reject()
+              }
+              return response.json()
+          })
+          .then(friends => {
+             result.innerHTML = ''
+             for (const friend of friends) {
+                const friendsNode = createFriendNode(friend)
+                result.appendChild(friendsNode)
+                }
+             })
+           .catch(()=> console.error('файл не найден или др.проблемы'))
+        })
+    function createFriendNode (friend) {
+        const div=document.createElement('div')
+        div.classList.add('friend')
+        div.textContent = `${friend.name} ${friend.lastName}`
+        return div
+    }
+</script>
+</body>
+</html>
