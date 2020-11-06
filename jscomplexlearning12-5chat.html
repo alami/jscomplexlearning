@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>jscomplexlearning 12-5 Web socket Chat </title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: Helvetica, sans-serif;
@@ -17,10 +18,12 @@
         }
     </style>
 </head>
-<body>
-<div class="row">
-    <div class="head">
-        <h3>Сообщения</h3>
+<body class="container">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="head">
+            <h3>Сообщения</h3>
+        </div>
     </div>
     <ul class="list-group" id="messageContainer">
     </ul>
@@ -34,31 +37,31 @@
     </div>
 </div>
 <script>
+    const socket = new WebSocket("ws://localhost:8080") //--создать соедиение с WS
+    const messageText = document.querySelector('#messageText')
     const sendButton = document.querySelector('#sendButton')
-    const result = document.querySelector(`#result`)
-    loadButton.addEventListener('click',()=>{
-        fetch('friends.json')
-          .then(response => {
-              if (response.status >= 400) {
-                  return Promise.reject()
-              }
-              return response.json()
-          })
-          .then(friends => {
-             result.innerHTML = ''
-             for (const friend of friends) {
-                const friendsNode = createFriendNode(friend)
-                result.appendChild(friendsNode)
-                }
-             })
-           .catch(()=> console.error('файл не найден или др.проблемы'))
+    const messageContainer = document.querySelector(`#messageContainer`)
+
+    socket.addEventListener('message',function (event){
+        addMessage(event.data) //^--возникает событие "приход сообщения" с сокета
         })
-    function createFriendNode (friend) {
-        const div=document.createElement('div')
-        div.classList.add('friend')
-        div.textContent = `${friend.name} ${friend.lastName}`
-        return div
+    socket.addEventListener('error',function (error){//если возникает событие "ошибка" при отправке
+        addMessage('Соединение закрыто или не может быть открыто')//обчно - причины эти
+        })
+
+    function addMessage (message) {
+        const messageItem = document.createElement('li')
+        messageItem.className = "list-group-item"
+        messageItem.textContent = message
+        messageContainer.appendChild(messageItem)
+        messageContainer.scrollTop = messageContainer.scrollHeight
+    }     //чтобы сразу видеть последние сообщения, --^--а не скролить вручную
+    function sendMessage (message) {
+        socket.send(messageText.value)
+        messageText.value = ''
     }
+    sendButton.addEventListener('click',sendMessage) //для клика мышкой
+    sendButton.addEventListener('change',sendMessage)//для ввода с клавы <enter>
 </script>
 </body>
 </html>

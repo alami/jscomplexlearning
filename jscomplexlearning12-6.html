@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+if ('serviceWorker' in navigator) { //если броузер поддерживает,.т.к никак не полифилятся
+    navigator.serviceWorker.register('service-worker.js')
+//2-02 сказать стр-це что у нее есть собственный service-worker
+}
+</script>
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 12-6 service-worker </title>
+    <link href="bootstrap.min.css">
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            font-weight: lighter;
+        }
+        .head {
+            padding:5px;
+            background-color: aliceblue
+        }
+        .list-group {
+            padding: 100px 0;
+        }
+    </style>
+</head>
+<body class="container">
+<div class="jumbotron">
+            <h1>Hello, LoftSchool</h1>
+    <p>Эта стр-ца может работать в off-line режиме</p>
+</div>
+</body>
+</html>
