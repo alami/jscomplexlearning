@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" crossorigin="anonymous"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u">
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 13-5 API</title>
+    <style>
+        input[type=file] {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .file-label {
+            cursor: pointer;
+        }
+
+        .label-image {
+            font-size: 30px;
+        }
+
+        #theImage {
+            width: 200px;
+        }
+    </style>
+</head>
+<body class="container text-center">
+<input id="photoInput" type="file">
+<label class="file-label text-center" for="photoInput">
+    <div class="label-image glyphicon glyphicon-upload"></div>
+    <div class="label-text">Выбрать файл</div>
+</label>
+<div>
+    <img class="img-circle" id="theImage" src="">
+</div>
+
+<script>
+    const theImage = document.querySelector('#theImage')
+    const photoInput  = document.querySelector('#photoInput')
+    const fileReader = new FileReader()
+
+    fileReader.addEventListener('load', function () {
+        theImage.src = fileReader.result
+    })
+
+    photoInput.addEventListener('change', function (e) {
+        const file = e.target.files[0]
+        if (file) {
+            if (file.size > 300 * 1024) {
+                alert("Слишком большой файл")
+            } else {
+                fileReader.readAsDataURL(file)
+            }
+        }
+    })
+</script>
+</body>
+</html>
