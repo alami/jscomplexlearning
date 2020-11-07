@@ -1380,7 +1380,30 @@ document.cookie.split('; ').reduce((prev,current) => {
 новости  => #news
 друзья   => #friends
 1-20 перехватывать момент смены этого хеша и понять как его менять на событие
-
+3-31 смена хеша приводит к генерации события 'hashchange' на объекте  "window"
+    window.addEventListener('hashchange', handlePage)
+5-00 вводим переменную
+    const pageMap = {
+        '#news' : '.news-content',
+        '#friends' : '.friends-content'
+    }
+6-09 let currentPage --чтобы знать какая открыта
+7-01 location- глобальный объект браузера о тек.сост стр-цы
+7-06 + ф-ции location.reload() - перегрузить, location.assign(..) - перейти на стр-цу,
+7-37 location.hash - св-во и содержит хеш
+     function handlePage() {
+        const pageName = pageMap[location.hash]
+        if (pageName){                                    --если есть соотвествие хешу <div>
+            const page = document.querySelector(pageName) --ищем этот <div>
+            if (page) {
+                if (currentPage) {             --если что-то открыто, то это скрывается
+                    currentPage.classList.add('hide')
+                }
+                page.classList.remove('hide')  --открываем,т.е удаляем у найденного "hide"
+                currentPage = page             -- в тек.стр-цу записываем найденный <div>
+            }
+        }
+    }
 -----------------------------------------------------
 13-4 Навигация_ history.mp4
 -----------------------------------------------------
