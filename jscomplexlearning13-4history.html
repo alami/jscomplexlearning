@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link crossorigin="anonymous" rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+         >
+    <meta charset="UTF-8">
+    <title>jscomplexlearning 13-4 history</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body class="container">
+<ul class="list">
+    <li><a href="#news">Новости</a></li>
+    <li><a href="#friends">Друзья</a></li>
+</ul>
+<div class="jumbotron news-content hide">
+    <h1>Новости</h1>
+    <p>Нидерланды — одна из самых счастливых стран в Европе и в мире.
+        Важная составляющая счастья и душевного здоровья голландцев — никсен,
+        или искусство  ничегонеделания.
+        Этот «секрет национального счастья» глубоко укоренен в нидерландской культуре,
+        но освоить его может каждый, независимо от этнической принадлежности,
+        языка и места проживания. Для этого не требуется никаких вложений:
+        вам не придется ничего покупать, менять себя, перестраивать свой дом,
+        обновлять гардероб, учиться медитировать или садиться на диету.
+        Все, что нужно, — ничего не делать!
+    </p>
+</div>
+<div class="jumbotron friends-content hide">
+    <h1>Друзья</h1>
+    <p>Ты чемпион компьютер ной он-лайн игры «Мир танков»?
+        Ты возомнил себя настоящим танковым асом, настреляв в «виртуальной реальности»
+        тысячи панцеров и ганомагов? Ты согласился протестировать
+        новый танковый симулятор с «максимальным погружением» и «полным эффектом присутствия»?
+    </p>
+</div>
+<script>
+    const pageMap = {
+        '#news' : '.news-content',
+        '#friends' : '.friends-content'
+    }
+    const list = document.querySelector('.list')
+    let currentPage
+    window.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+            e.preventDefault()
+            const newPage = e.target.getAttribute('href')
+            history.pushState({
+                page: newPage
+            }, 'new page')
+            handlePage(newPage)
+        }
+    })
+    window.addEventListener('popstate', (e)=>{
+        if (e.state && e.state.page) {
+            handlePage(e.state.page)
+        }
+    })
+    function handlePage(page) {
+        const pageName = pageMap[page]
+        if (pageName){
+            const page = document.querySelector(pageName)
+            if (page) {
+                if (currentPage) {
+                    currentPage.classList.add('hide')
+                }
+                page.classList.remove('hide')
+                currentPage = page
+            }
+        }
+    }
+</script>
+</body>
+</html>
