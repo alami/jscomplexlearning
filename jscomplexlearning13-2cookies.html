@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" crossorigin="anonymous"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u">
     <meta charset="UTF-8">
     <title>jscomplexlearning 13-2 cookies</title>
 </head>
-<body>
-
+<body class="container text-center">
+<div>Имя:<br><input type="text" id="name"></div>
+<div>Значение:<br><input type="text" id="value"></div>
+<div>Путь:<br><input type="text" id="path"></div>
+<div><button id="add">Добавить</button></div>
+<script>
+    const cookieName = document.querySelector('#name')
+    const cookieValue = document.querySelector('#value')
+    const add = document.querySelector('#add')
+    add.addEventListener('click', function () {
+        document.cookie = `${cookieName.value} = ${cookieValue.value}`
+        cookieName.value = ''
+        cookieValue.value = ''
+    })
+</script>
 </body>
 </html>
