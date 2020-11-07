@@ -1225,13 +1225,109 @@ loadButton.addEventListener('click',()=>{
 3-22 все PWA рабоают на этой технологии
 ------------------------------
 12-_12 links.txt
-
-
-
 ---------------------------------------------------------------------------------------
 13 Browser API
 ---------------------------------------------------------------------------------------
 13-1 LocalStorage.mp4
+- вн.хранилище браузера, кот можнго исп-ить для своих целей.
+1-01 пример: создать и загрузить анкету
+2-38 let storage = localStorage - глобальный объект, авто создается браузером
+3-12 самый обычный, у кот. можно создать св-ва в консоли
+    localStorage['myProp'] = 'hello'
+    "hello"
+3-25 localStorage['myProp'] --получим назад,
+но если даже закроем/перегрузим/юю страницу - получим назад также
+4-11 т.е. браузер дает возможность сохранять данные между сессиями,
+но только строки, а не объект, кот. автоматически все равно превратиться в строку
+5-28 но JSON.stringify( { } ) можно первратить любой объект в строку
+и в таком виде можно записать, и из памяти можно прочиатть JS-объект
+6-03 и исп-ть JSON.parse
+    localStorage['myProp'] = JSON.stringify ( { "ObjProp1" : 1, "ObjProp2" :2 } )
+    >"{"ObjProp1":1,"ObjProp2":2}"
+ => JSON.parse ( localStorage['myProp'] )
+    >{ObjProp1: 1, ObjProp2: 2}
+        ObjProp1: 1
+        ObjProp2: 2
+      __proto__: Object
+8-11 let storage = localStorage
+     save.addEventListener('click',function (){
+        storage.data = JSON.stringify({ --можно и напрямую написать localStorage.data=...
+            myName: myName.value,
+            bday: bday.value,
+            about: about.value
+        })
+    })
+8-21 в консоли localStorage.data  --> увидим тот самый объект
+        "{"myName":"Иванов И.И.","bday":"2019","about":"сюрреалист"}"
+8-45 JSON.parse (localStorage.data) -->уже объект, и вставляем его св-ва в поля
+        {myName: "Иванов И.И.", bday: "2019", about: "сюрреалист"}
+            about: "сюрреалист"
+            bday: "2019"
+            myName: "Иванов И.И."
+        __proto__: Object
+9-09 load.addEventListener('click',function (){
+        const data = JSON.parse (storage.data || '{}') ---чтобы не ругался на пустой объект
+        myName.value = data.myName || ''  --т.к. JSON.parse () надо передавать валидный объект
+        bday.value = data.bday || ''
+        about.value = data.about || ''
+        })
+11-16 У каждого домена:port свой localStorage, и напр.,
+        у localhost:8888 нет доступа сайте yandex.ru, т.е. есть изоляция
+12-40 если вкладки открыты в одном домене/порту они получают инф-цию о всех локалСтораж
+13-38 вкладки могут обменитваться инф-цей при помощи события 'storage'
+13-45 когда 1 из вкладок произошло какое-то событии на остальных будут сгенерировано событие 'storage'
+14-08 мы и добавили обработчик на "window" на это событие
+        window.addEventListener('storage',function (event){  ----- !! window !!
+                console.log(arguments)
+            })
+Arguments [StorageEvent, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+0: StorageEvent {isTrusted: true, key: "data",
+ oldValue: "{"myName":"tester","bday":"2020","about":"seperstrar test"}",
+  newValue: "{"myName":"tester1","bday":"2020 22 12","about":"seperstrar test test"}",
+   url: "http://localhost:63342/jscomplexlearning/
+          jscomplex…g13-1storage.html?_ijt=uh54md1pk0ungbiuf38ramabb8", …}
+callee: ƒ ()
+length: 1
+Symbol(Symbol.iterator): ƒ values()
+__proto__: Object
+14-43 собсьвенно приходит event, если его вывести console.log(event)
+StorageEvent{isTrusted: true, key: "data",
+ oldValue: "{"myName":"tester1","bday":"2020 22 12","about":"seperstrar test test"}",
+  newValue: "{"myName":"test2","bday":"352352 ","about":"235 235 523 523"}",
+   url: "http://localhost:63342/jscomplexlearning/
+   jscomplex…g13-1storage.html?_ijt=uh54md1pk0ungbiuf38ramabb8",}
+
+14-51 поменяем из др.вкадки - сама она ничего(событий) не получает
+    получают соседние вкладки !
+15-31 event имеет 3 интересных поля
+    key: "data", - по какому ключу произошли изменения
+    oldValue: и newValue: ...
+16-25 т.о.можно организовать обмен данными, синхронизацию, повторять тро чтоб делает кнопка загрузить
+например съэмулировав "click"
+    window.addEventListener('storage',function (){
+        console.log(event)
+        load.click()
+18-30 ограничения - на домен до 5-10Mb => стоит обернуть момент записи в try()
+    save.addEventListener('click',function (){
+        try {
+            storage.data = JSON.stringify({
+                myName: myName.value,
+                bday: bday.value,
+                about: about.value
+            })
+        } catch (e) { console.error('.....')}
+    })
+данные localStorage даже после перегрузки ПК, до перестановки
+21-28 аналогично и sessionStorage, но данные живут до закрытия стр-цы
+22-07 для них перключния и введена переменная
+    let storage = localStorage
+кот и переключается
+22-35     isSessionStorage.addEventListener('change',function (e){
+              storage = isSessionStorage.checked ? sessionStorage : localStorage
+          })
+
+
+
 13-2 Cookies.mp4
 13-3 Навигация_ hash.mp4
 13-4 Навигация_ history.mp4
