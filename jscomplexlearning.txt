@@ -1490,11 +1490,101 @@ createFriendNode (friend) - слишком много кода
 6-35 вручную создавать не всегда подходит => Шаблонизация
 7-01 вспомним: Строковая интерполяция - `${obj.name} - ${obj.lastName}`
 9-01 рассмотрим более мощный Шаблонизатор - Handlebars
-Шаблонизация.mp4 - Handlesbars
-http://tryhandlebarsjs.com/
-12-01 можно вставлять управляюшие констркуции
+Шаблонизация.mp4 - Handlesbars  4.0.3  (Mustache 1,2)
+http://tryhandlebarsjs.com
+12-01 можно вставлять управляюшие констркуции - # .. /
+16-39 {{#each list}} ... {{/each}}
+20-09 передаем объект со сво-м "list"--->    { list: [ {}, {},...] }
+22-47 ->console  чтобы подключить шаб-р: как скрипт на фронте, или как модуль на бэке
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
 
+24-27 подготовить шаблон - данные и куда нибудь сохраним
+    const template = Handlebars.compile('<div class="friend">{{name}} {{lastName}} </div>');
+26-00 template - это ф-ция, вызывая и передевая данные получаем рез-т
+            >template ({
+                name:'Ivan',
+                lastName:'Petrov'
+              });
+            >"<div class="friend">Ivan Petrov </div>"
+29-02 где можно применить
+--------------------------------------------------------------------------------------
 15-2 VK SDK.mp4
+https://vk.com/dev/methods - вывод инфо о пользователе,...
+1-41 - создать соц.стр-цу со своими фото..
+2-25 интересует методы списка "друзей" - friend.get : https://vk.com/dev/friends.get
+4-18 и какие поля нужны: днюхи, сортироваки  и т.п.
+  - сервер ответит JSON-м
+5-42 версии влияют на формат ответа
+6-35 для работы для разработчика надо создать "приложение" на сайте
+- фактически некий идентификатор- от лица которой буут приходить запросы в соц.сеть
+
+8-00 делаем стр-ку сразу подкл.
+     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+9-27 <script id="user-template" type="text/x-handlebars-template"<<<<<< можно писать что угодно,
+    главное, если оно браузеру неизвестно, то воспринимается не как скрипт,а просто текст!
+   т.е. позмоность писать любой HTML-код ...
+
+11-04 <script src="http://vk.com/js/api/openapi.js"></script>
+  становится доступный глобальный объект VK
+11-37 1) инициализировать, передавая объект с настройками (пока идентификатор "приложения")
+    VK.init ({ apiId: 5267932})
+13-06 function auth() {
+       return Promise((resolve, reject) => {
+         VK.Auth.login(data => {  --для безопасности, откроется окно, спрашивающее пароль
+             if (data.session) {  --callback ф-ция-промисы, возвр-ций результат "data",
+                 resolve()        - если у него есть "session"
+             } else {
+                 reject(new Error('Не удалось авторизоваться'))
+             }
+20-16     }, 2)  --это ид.прав доступа,см на сайте
+       })
+    }
+15-11 auth().then(()=>console.log('ok'))  --вызов ф-ции, дождаться разрешения,
+и если промос разрешиться успешно --^
+17-00 далее запросить доступ к личным данным и списку друзей
+21-00 добавим см. script-2.js
+      function callAPI (method, params) {
+      params.v = '5.76'                    --версия ответов API
+      return new Promise((resolve, reject) => {
+        VK.api(method, params, (data) => { -- callback ф-ция, когда прийдет ответ на запрос
+            if (data.error) {
+                reject(data.error)
+            } else {
+                resolve(data.response)
+            }
+        })
+      })
+    }
+24-26 auth()                    --авторизуемся,
+        .then(()=>{             --возвр-м callAPI
+           return callAPI('users.get', { name_case:'gen' })
+25-08 })                        --с параметрами ----^-- в род.падеже
+        .then(me => {           --"Друзья на стр-це Сергея Милюкова"
+           console.log(me)
+      })
+27-42 добавим до последней строки (см. script-3.js)
+27-55   .then(([me]) => {        --деструктуризация по массиву-нужен только 1й элемент
+           const headerInfo = document.querySelector('#headerInfo')
+           headerInfo.textContent = "Друзья на стр-це ${me.first_name} ${me.last_name}"
+           })
+28-39 4 шаг (script-4.js) -вставим выше -поллучение города, страны, фото друзей
+           return callAPI('friends.get', {fields: 'city, country, photo_100'})
+       .then(friends => {
+               console.log(friends) --увидив консоли 150 друзей в JSON
+           })
+30-07 5 шаг - прогоняем через шаблонизатор
+    .then(friends => {
+31-33   const template = document.querySelector('#user-template').textContent --получить шаблон
+        const render = Handlebars.compile(template)               --Handlebars возвр.спец.ф-цию
+        const html = render(friends.items)   --для каждого элемента списка будет сгенерировано
+        const results =  document.querySelector('#results')
+
+        results.innerHTML = html
+    })
+32-30 демо
+33-11 еще есть 6й шаг - заменил все .then на await()
+35-48 итого-повтор
+---------------------------------------------------------------------------------------
 15-15 Методичка — HTML5 API.pdf
 15-15 Методичка — SDK.pdf
 ---------------------------------------------------------------------------------------

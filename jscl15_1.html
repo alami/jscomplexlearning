@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,12 +6,19 @@
     <link rel="stylesheet" crossorigin="anonymous"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u">
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <style>
+        body { font: 16px Helvetica }
+        .friends {
+            display: flex;
+            flex-wrap: wrap;
+        }
         .friend {
             width: 100px;
-            margin: 0 10px;
+            margin: 0 40px 40px 0;
             text-align: center;
         }
+        .friend img { border-radius: 50%}
     </style>
 </head>
 <body class="container">
@@ -22,13 +29,12 @@
         {
             name:'Ivan',
             lastName:'Petrov',
-            photo:'https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg',
-                //'https://upload.wikimedia.org/wikipedia/common/a/ac/No_image_availiable.jpg'
+            photo:'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
         },
         {
             name:'Andrey',
             lastName:'Nikitin',
-            photo:'https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg',
+            photo:'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg',
         }
     ]
     renderfriends(data)
