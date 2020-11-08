@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>JS CL 15-1 Template</title>
     <link rel="stylesheet" crossorigin="anonymous"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u">
-    <meta charset="UTF-8">
-    <title>JS CL 15-1 Template</title>
+    <style>
+        .friend {
+            width: 100px;
+            margin: 0 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body class="container">
 <div id="friends"></div>
@@ -15,13 +22,13 @@
         {
             name:'Ivan',
             lastName:'Petrov',
-            photo:'upload.wikimedia.org/wikipedia/common/a/ac/No_image_availiable.jpg',
+            photo:'https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg',
                 //'https://upload.wikimedia.org/wikipedia/common/a/ac/No_image_availiable.jpg'
         },
         {
             name:'Andrey',
             lastName:'Nikitin',
-            photo:'upload.wikimedia.org/wikipedia/common/a/ac/No_image_availiable.jpg',
+            photo:'https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg',
         }
     ]
     renderfriends(data)
