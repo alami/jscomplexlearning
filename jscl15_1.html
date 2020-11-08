@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" crossorigin="anonymous"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u">
+    <meta charset="UTF-8">
+    <title>JS CL 15-1 Template</title>
+</head>
+<body class="container">
+<div id="friends"></div>
+<script>
+    const friendNode = document.querySelector('#friends')
+    const data = [
+        {
+            name:'Ivan',
+            lastName:'Petrov',
+            photo:'upload.wikimedia.org/wikipedia/common/a/ac/No_image_availiable.jpg',
+                //'https://upload.wikimedia.org/wikipedia/common/a/ac/No_image_availiable.jpg'
+        },
+        {
+            name:'Andrey',
+            lastName:'Nikitin',
+            photo:'upload.wikimedia.org/wikipedia/common/a/ac/No_image_availiable.jpg',
+        }
+    ]
+    renderfriends(data)
+    function renderfriends(friends) {
+        friends.map(createFriendNode).forEach(node =>{
+            friendNode.appendChild(node)
+        })
+    }
+    function createFriendNode (friend) {
+        const friendNode = document.createElement('div')
+        const firstNameNode = document.createElement('div')
+        const lastNameNode = document.createElement('div')
+        const photoNode = document.createElement('img')
+
+        friendNode.classList.add('friend')
+        firstNameNode.textContent = friend.name
+        lastNameNode.textContent = friend.lastName
+        photoNode.src = friend.photo
+
+        friendNode.appendChild(photoNode)
+        friendNode.appendChild(firstNameNode)
+        friendNode.appendChild(lastNameNode)
+
+        return friendNode
+    }
+</script>
+</body>
+</html>
