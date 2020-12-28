@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ch.04. forms</title>
+</head>
+<body>
+<input type="password" id="pswd"><br>
+<input type="color" id="colr" value="#ffffcc"><br>
+<input type="date" id="dat" value="2020-12-31"><br>
+<input type="range" id="rang" min="0" max="200" value="100"> <span>100</span>
+<button>Push</button>
+<hr>
+<input type="checkbox" id="i2" value="simsim"><label for="i2">Click me</label>
+<button id="btn-01">Push</button>
+<hr>
+<textarea name="" id="two" cols="30" rows="2"></textarea>
+<button id="btn-02">Push</button>
+<h4>---------- Добавим форму --------</h4>
+<form action="">
+    <textarea name="" id="three" cols="30" rows="2" name="n1"></textarea><br>
+    <input type="text" id="three1" name="n2">
+    <button id="btn-03">Push</button>
+</form>
+
+</body>
+<script>
+document.querySelector('button').onclick = () => {
+    console.log(' pswd: ' + document.querySelector('#pswd').value
+        +' | color: ' + document.querySelector('#colr').value
+        +' | date: ' + document.querySelector('#dat').value
+        +' | range: ' + document.querySelector('#rang').value)
+    document.querySelector('button').style.backgroundColor
+        = document.querySelector('#colr').value
+}
+document.querySelector('#rang').oninput = () => {
+    document.querySelector('span').innerHTML = document.querySelector('#rang').value
+}
+document.querySelector('#btn-01').onclick = () => {
+    console.log(' i2: ' + document.querySelector('#i2').value
+    + ' | checked: ' + document.querySelector('#i2').checked)
+}
+document.querySelector('#btn-02').onclick = () => {
+    let text = document.querySelector('#two')
+    console.log(' two: ' + text.value)
+    text.value = 'one'
+}
+//--------------- Добавим форму ------------------
+document.querySelector('#btn-03').onclick = (e) => {
+    e.preventDefault()
+    // let text = document.querySelector('#three')
+    // console.log(' three: ' + text.value)
+    // text.value = 'one'
+    let form = document.querySelector('form')
+    console.log(form[1]) //см.f12/elements/+справа "properties"
+    console.log(form.elements.three) //см.f12/elements/+справа "properties"
+}
+</script>
+</html>
