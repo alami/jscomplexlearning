@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chapter 02</title>
+</head>
+<body>
+<h1>Simsim</h1>
+<div id="out"></div>
+<div id="header"></div>
+
+<input type="text" class="input-in" value="55">
+<button>Go</button>
+<div class="out"></div>
+</body>
+<script>
+    console.log('Simsim')
+    // alert('simsim')
+    document.getElementById('out').innerHTML = 'Simsim'
+    document.querySelector('#header').innerHTML = 5
+
+    let inputIn = document.querySelector('.input-in')
+    let button = document.querySelector('button')
+    let div = document.querySelector('.out')
+
+    button.onclick = function () {
+        console.log('!!!')
+        // console.log(inputIn.value)
+        let b = +inputIn.value
+        console.log(b+10)
+        div.innerHTML = b+10
+    }
+</script>
+</html>

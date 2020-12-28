@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 07-09</title>
+</head>
+<body>
+<div class="container">
+    <button class="f-1">Func 1</button>
+<script>
+let f1 = document.querySelector('.f-1');
+function one() {
+    console.log('work')
+}
+one()
+f1.onclick = one
+
+function two() {
+    console.log('work 222')
+    return 54
+}
+console.log(1+two())
+</script>
+
+<button class="toggle">toggle</button>
+<p class="one" data="privet">Test</p>
+<p>Выберите тип бензина:</p>
+    <input type="text" class="gallons">
+<div>
+    <button class="gas" data="1.2">A 92</button>
+    <button class="gas" data="1.6">A 95</button>
+    <button class="gas" data="1.9">A 98</button>
+</div>
+
+<div class="test">Text</div>
+
+<script>
+const one_one = document.querySelector('.one')
+one_one.style.width = '150px'
+one_one.style.paddingBottom = '40px'
+//one_one.style.border = '3px solid black'
+console.log(one_one.style)
+one_one.classList.add('two','three')
+one_one.classList.remove('three')
+
+const toggle = document.querySelector('.toggle')
+toggle.onclick = function () {
+    this.classList.toggle('three')
+}
+
+console.log(document.querySelector('link').getAttribute('href'))
+console.log(document.querySelectorAll('link')[1].getAttribute('href'))
+
+console.log(one_one.getAttribute('data'))
+one_one.setAttribute('data-num', 6)
+
+let gas = document.querySelectorAll('.gas')
+for (let i=0;i<gas.length;i++) {
+    gas[i].onclick = function () {
+        let gallons = document.querySelector('.gallons').value
+        let amount = this.getAttribute('data')
+        console.log(gallons*amount)
+    }
+}
+
+let a = document.createElement('div')
+a.innerHTML = 'Simsim !'
+a.classList.add('one')
+a.onclick = function () {
+    alert('Simsim')
+}
+
+document.querySelector('.test').appendChild(a)
+console.log(a)
+
+</script>
+</div>
+</body>
+</html>
