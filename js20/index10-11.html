@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 10 - 11</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+let c=['Ivan', 37,'Oven']
+let a = [1,2,3,4]
+console.log(a)
+// for (let i=0;i<a.length;i++) {
+//     document.querySelector('.out').innerHTML += a[i]+' '
+// }
+//console.log()
+let out = ''
+for (let i=0;i<a.length;i++) {
+    out += a[i]+' '
+}
+document.querySelector('.out').innerHTML = out
+</script>
+</body>
+</html>
