@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 10 - 11</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+let c=['Ivan', 37,'Oven']
+let a = [1,2,3,4]
+console.log(a)
+/*for (let i=0;i<a.length;i++) {
+    document.querySelector('.out').innerHTML += a[i]+' '
+}
+console.log()*/
+let out = ''
+for (let i=0;i<a.length;i++) {
+    out += a[i]+' '
+}
+document.querySelector('.out').innerHTML = out
+
+const aa = [1,2,3,4,5,6,7,8,9]
+const b = ['a','b','c','d','e','f','g','i','j','k','l','m',]
+console.log(aa.length)
+console.log(aa.push(10,11,22))
+console.log(aa)
+console.log(b)
+console.log(b.pop())
+console.log(b)
+delete aa[3]//делает "empty" внутри массива
+console.log(aa)
+aa.splice(3,3,'hi')
+console.log(aa)
+aa.shift()
+console.log(aa)
+aa.unshift('ho')
+console.log(aa)
+
+const aaa = {"a": 5, "b": 6, "c": 7, "d": 8, }
+console.log(aaa)
+console.log(aaa.b)
+let k="c"
+console.log(aaa[k])
+document.querySelector('.out').innerHTML = aa
+out = ''
+for (k in aaa) { out += aaa[k] + ' '}
+document.querySelector('.out').innerHTML = out
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 14 Weather API</title>
+</head>
+<body>
+<div class="container">
+    <div class="pricing-table row">
+        <div class="package featured">
+            <p class="package-name"></p>
+            <hr>
+            <p class="price"></p>
+            <p class="descaimer"></p>
+            <hr>
+            <ul class="features">
+                <li></li>
+            </ul>
+            <button class="button-primary">Go</button>
+        </div>
+    </div>
+
+<div id="out"></div>
+</div>
+<script>
+const mykey = ''
+fetch (`http://api.openweathermap.org/data/2.5/weather?q=Tashkent&appid=${mykey}`)
+    .then(function (resp) {return resp.json()})
+    .then(function (data) {
+        console.log(data)
+        document.querySelector('.package-name').textContent = data.name
+        document.querySelector('.price').innerHTML = Math.round(data.main.temp - 273) + '&deg;'
+        document.querySelector('.descaimer').textContent = data.weather[0].description
+        document.querySelector('.features li').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`
+    })
+    .catch(function () {console.error('ups!')})
+</script>
+</body>
+</html>
