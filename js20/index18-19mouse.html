@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 18 </title>
+</head>
+<body>
+<div class="container">
+    <div class="block one">one</div>
+    <div class="block two">two</div>
+    <hr>
+    <div class="block three">three</div>
+    <hr>
+    <button id="regress">Regress</button>
+    <progress value="20" max="100"></progress>
+    <label>20</label>
+    <button id="progress">Progress</button>
+</div>
+<script>
+a = "simsim,hi,mahai"
+b = a.split(',')
+console.log(b)
+console.log(b.join('-'))
+c = [7,8,9]
+c.forEach (function (elem,index) {
+    console.log(`${index} => ${elem*2}`)
+})
+//------------ 19 mouse -------------
+document.querySelector('.one').onclick = function (event) {
+    console.log(event)
+    console.log('click')
+}
+document.querySelector('.two').onclick = function (event) {
+    console.log(event)
+    console.log('click2')
+}
+document.querySelector('.two').oncontextmenu = function (event) {
+    console.log('right menu')
+    return false
+}
+/*let w=75
+document.querySelector('.three').onmousemove = () => {
+    document.querySelector('.three').style.width = w + 'px'
+    w++
+}*/
+let toggle=true
+document.querySelector('.three').onmouseenter = () => {
+    if (toggle)
+      document.querySelector('.three').style.background = 'red'
+    else
+        document.querySelector('.three').style.background = 'yellow'
+    toggle = !toggle
+}
+document.querySelector('.three').onmouseleave = () => {
+        document.querySelector('.three').style.background = 'green'
+}
+document.querySelector('.three').onmousedown = () => {
+        document.querySelector('.three').style.background = 'orange'
+}
+document.querySelector('.three').onmouseup = () => {
+        document.querySelector('.three').style.background = 'blue'
+}
+//------------ progress bar
+let p=20 //p.b.status
+document.querySelector('#progress').onclick = function (event) {
+    if (p<100) {
+        p += 10
+        document.querySelector('progress').value = p
+        document.querySelector('label').textContent = p
+    }
+}
+document.querySelector('#regress').onclick = function (event) {
+    if (p>0) {
+        p -= 10
+        document.querySelector('progress').value = p
+        document.querySelector('label').textContent = p
+    }
+}
+</script>
+</body>
+</html>

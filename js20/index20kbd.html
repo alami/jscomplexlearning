@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 20 kbd</title>
+</head>
+<body>
+<div class="container">
+<div id="out"></div>
+    <div>
+    <input type="text" class="i-1">
+    </div>
+    <div>
+        <label><input type="checkbox" class="ch-1">CapsLock</label>
+    </div>
+    <div>
+        <input type="text" class="i-2">
+    </div>
+</div>
+<script>
+document.querySelector('.i-1').onkeypress = function (event) {
+    console.log('--- key press -----------')
+    console.log('charCode: ' + event.charCode)//113 81[+32] 1081  48  47
+    console.log('code: ' + event.code)        //keyQ
+    console.log('keyCode: ' + event.keyCode)
+    console.log('key: ' + event.key)          //q    Q [_]   й    0    9
+    console.log('which: ' + event.which)
+    // console.log(event)
+}
+document.querySelector('.i-1').onkeydown = function (event) {
+    console.log('--- key down -----------')
+    console.log('charCode: ' + event.charCode)//113 81[+32] 1081  48  47
+    console.log('code: ' + event.code)        //keyQ
+    console.log('keyCode: ' + event.keyCode)
+    console.log('key: ' + event.key)          //q    Q [_]   й    0    9
+    console.log('which: ' + event.which)
+    if (event.key == 'CapsLock') {
+        document.querySelector('.ch-1').checked = true
+    } else {
+        document.querySelector('.ch-1').checked = false
+    }
+}
+document.querySelector('.i-1').onkeyup = function (event) {
+    console.log('--- key up -----------')
+    console.log('charCode: ' + event.charCode)
+    console.log('code: ' + event.code)
+    console.log('keyCode: ' + event.keyCode)
+    console.log('key: ' + event.key)
+    console.log('which: ' + event.which)
+}
+//------------------------------ input-2
+document.querySelector('.i-2').onkeypress = function (event) {
+    console.log('--- key press -----------')
+    console.log('charCode: ' + event.charCode)
+    console.log('code: ' + event.code)
+    console.log('keyCode: ' + event.keyCode)
+    console.log('key: ' + event.key)
+    console.log('which: ' + event.which)
+    const a = {
+        q : 'w',
+        w : 'e'
+    }
+    document.querySelector('.i-2').value += a[event.key]
+    //         чтобы не стиралось "+" ---^
+    return false
+    // console.log(event)
+}
+</script>
+</body>
+</html>

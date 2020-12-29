@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 16, 17 - for, for in, for of</title>
+</head>
+<body>
+<div class="container">
+<div id="out"></div>
+</div>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<script>
+let arr = [4,5,6]
+let allP = document.getElementsByTagName('p')
+let qP = document.querySelector('p')
+console.log(arr)  // массив
+console.log(allP)  //HTMLколлекция , не массив, хотя индекс и length работают
+for (let key in allP)  console.log(allP[key])
+for (let val of allP)  console.log(val)
+//------------ ch 17 map
+let a = [ 4,5,12,200,1,0,-2]
+let b = a.map(function (item, index) {
+    console.log(item)
+    //return item
+    return index
+})
+console.log(b)
+let c = a.map(item => item*5)
+console.log(c)
+//------ filter
+let d = a.filter(function (item, index) {
+    if (item % 2 == 0) return true
+    else return false //--не обяз-но, т.к updefined === false
+    //return index
+})
+console.log(d)
+</script>
+</body>
+</html>
