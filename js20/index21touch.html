@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 21 touche</title>
+</head>
+<body>
+<div class="container">
+<div class="block-1"></div>
+<div class="block-2"></div>
+<div class="out-1"></div>
+<div class="out-2"></div>
+<div class="out-3"></div>
+</div>
+<script>
+document.querySelector('.block-1').addEventListener("touchstart",mytouch)
+document.querySelector('.block-1').addEventListener("touchend",mytouchEnd)
+document.querySelector('.block-2').addEventListener("touchmove",mytouchMove)
+function mytouch(event) {
+    console.log(event)
+    document.querySelector('.out-2').innerHTML += event.touches.length
+    document.querySelector('.out-1').innerHTML += ' work'
+}
+function mytouchEnd(event) {
+    document.querySelector('.out-3').innerHTML += ' end'
+}
+function mytouchMove(event) {
+    console.log(event)
+    document.querySelector('.out-1').innerHTML += ' move'
+}
+</script>
+</body>
+</html>
