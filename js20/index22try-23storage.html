@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 0</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+let a=5
+a=a*2
+try {
+    document.querySelector('.test').innerHTML = a
+} catch (e) { console.warn('error: '+e.message) }
+finally {
+    console.info('прога работает')
+}
+console.log(a)
+t1()
+function t1() {
+    console.log('просто, ничего полезного')
+}
+//-----------------------
+localStorage.setItem('data', 5)
+console.log(localStorage.getItem('data'))
+a = [1,2,3]
+window.addEventListener('storage', (e) => {
+    console.log('chainge')
+    document.querySelector('.out').textContent = localStorage.getItem('b1')
+})
+localStorage.setItem('a', JSON.stringify(a))
+b = JSON.parse(localStorage.getItem('a'))
+console.log(`${typeof a} : ${a.length}`)
+console.log(`${typeof b} : ${b.length}`)
+
+</script>
+</body>
+</html>

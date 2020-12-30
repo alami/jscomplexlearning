@@ -9,8 +9,17 @@
 </head>
 <body>
 <div class="container">
-<div class="out"></div>
+<div class="test"></div>
+<div class="test2"></div>
 </div>
-<script></script>
+<script>
+function myAlert(a, b, c ){
+    //let a = 'Error'
+    //let b = `<p class="orange">${a}</p>`
+    document.querySelector(`.${c}`).innerHTML = `<p class="${b}">${a}</p>`
+}
+myAlert('Hi', 'red', 'test')
+myAlert('Simsim', 'orange', 'test2')
+</script>
 </body>
 </html>

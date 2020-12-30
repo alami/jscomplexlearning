@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 0</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+let a = new Promise( (resolve, reject) => {
+    fetch("http://getpost.itgid.info/index2.php")
+        .then(data => {
+            resolve (data.text())
+        })
+
+})
+
+let b = new Promise( (resolve, reject) => {
+    fetch("http://getpost.itgid.info/index2.php?auth=werfgthj")
+        .then(data => {
+            resolve (data.text())
+        })
+
+})
+
+/*a.then(data => {
+    console.log('a:'+data)
+})
+
+b.then(data => {
+    console.log('b:'+data)
+})*/
+Promise.all([a,b]).then(data => {
+    console.log(data)
+})
+</script>
+</body>
+</html>

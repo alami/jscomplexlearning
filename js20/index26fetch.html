@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 0</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+fetch("http://getpost.itgid.info/index2.php")
+.then( data => {
+    console.log(data)      /*
+    //console.log(data.text()) //опять промис с нужным текстом,т.е.
+    data.text().then( data2 => {
+        console.log(data2)
+    })  --------------+   */ //но промис позволяет вынести из вложенности
+    return data.text()
+})
+.then( data => { //<--+
+    console.log(data)
+})
+
+fetch("http://getpost.itgid.info/index2.php", {
+    method: 'POST',
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+        //'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded',  // в виде ФОРМЫ !!
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-re ferrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body:  'auth=sdjkfhksjdhfksdjfhqwe',
+    //JSON.stringify(data) // body data type must match "Content-Type" header
+})
+.then( respose => respose.text() )   //json() )
+.then( respose => {
+    console.log(respose)
+})
+
+</script>
+</body>
+</html>
