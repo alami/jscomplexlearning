@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
     <title>Ch 29 closure</title>
 </head>
 <body>
 <div class="container">
 <div class="out"></div>
+    <button>move</button>
+    <div class="test-2"></div>
 </div>
 <script>
     /*let a=8
@@ -31,8 +34,27 @@ console.log(b())
 console.log(b())
 console.log(c())
 console.log(b())
-
-
+//-----30 recurtion------
+let a=1
+function rec(){
+    a++
+    if (a>10) {
+        console.log(`rec1 ${a}`)
+        return
+    }
+    rec()
+    console.log(`rec2 ${a}`)
+}
+// rec()
+    let offset =0
+    function move() {
+        offset +=5
+        document.querySelector('.test-2').style.left = offset + 'px'
+        console.log(offset)
+        if (offset>800) return
+        setTimeout(move,500)
+    }
+    document.querySelector('button').onclick = move
 </script>
 </body>
 </html>
