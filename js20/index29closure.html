@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ch 29 closure</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+    /*let a=8
+function one() {
+    let a=5
+    return a*12
+}
+console.log(a)
+console.log(one())*/
+function t1 () {
+    let a = 0
+    function one() {
+        return ++a
+    }
+    return one
+}
+let b = t1()
+let c = t1()
+
+console.log(b)
+console.log(b())
+console.log(b())
+console.log(c())
+console.log(b())
+
+
+</script>
+</body>
+</html>
