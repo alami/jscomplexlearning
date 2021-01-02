@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ch 0</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+class User {
+    #test = 'Hohoho'
+    set name(name) {
+        this._name = name.trim().toLowerCase()
+    }
+    get name() {
+        return this._name + this.#test
+    }
+}
+const student = new User()
+student.name = "   AlEX"
+console.log(student)
+console.log(student.name)
+//console.log(student.#test)
+console.log(student['#test'])
+</script>
+</body>
+</html>

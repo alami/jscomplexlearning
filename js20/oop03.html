@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/classes/User.js"></script>
+    <script src="js/classes/Student.js"></script>
+    <title>Ch 0</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+
+let a = 'Ivan'
+let b = '777'
+const person = new User(a,b)
+console.log(person)
+console.log(person.validatePassword())
+
+let firstStudent = new  Student(a,b,"I123")
+console.log(firstStudent)
+console.log(firstStudent.getStudentCourses())
+</script>
+</body>
+</html>

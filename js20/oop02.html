@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/user.js"></script>
+    <script src="js/user_profile.js"></script>
+    <title>Ch 0</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script>
+let a={
+    "name" :'Test',
+    "color":'red',
+    "show" : function () {
+        console.log(this.color)
+    }
+}
+let b = {
+    "fontSize":'24px',
+    __proto__: a,
+}
+let c = {
+    "fontFamily":'Verdana',
+    __proto__: a,
+}
+b.name = "Simsim"
+/*console.log(a)
+b.color = "green"
+console.log(b)
+a.show()
+b.show()
+console.log(a.hasOwnProperty('color'))
+console.log(b.hasOwnProperty('color'))*/
+// 18-16 ----- применим на практике -------------
+
+user.password = 'Simsim'
+console.log(user)
+console.log(user.validatePassword())
+user_profile.age = 25
+user_profile.username = 'Pupkin'
+console.log(user_profile)
+
+</script>
+</body>
+</html>
