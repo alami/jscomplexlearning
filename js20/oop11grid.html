@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="css/styleGridView.css">
+    <title>Ch 09-10 Grid</title>
+</head>
+<body>
+<div class="container">
+<div class="out"></div>
+</div>
+<script src="js/GridView11.js"></script>
+<script>
+const dataExample = [
+    {
+        company: 'Alsfred <b>Futter</b>',
+        chief: 'Maria Anders',
+        country: 'Germany'
+    },
+    {
+        company: 'Centri commercial Moctesuma',
+        chief: 'Franchesco Chang',
+        country: 'Mexico'
+    },
+    {
+        company: 'Erst Hendel',
+        chief: 'Roland Medel',
+        country: 'Austria'
+    },
+    {
+        company: 'Irland Traders',
+        chief: 'Hellen Bannet',
+        country: 'UK'
+    },
+    {
+        company: 'Laughing Bachus Winecellars',
+        chief: 'YoshiTamuri',
+        country: 'Canada'
+    },
+]
+let gridView = new GridView()
+const data = {
+    header : 'Simsim',
+    headerClass : ['header', 'site-header'],
+    attribute : {'company':{
+            'label': 'Компания',
+            'src': 'html'
+        },
+        'chief':{
+            'label': 'Директор',
+        },
+        'country':{
+            // 'label': 'Страна',
+            'value' : (data) => {
+                if (data['country'] === 'Germany')
+                    return data['country'] + ' map'
+                return data['country']
+            }
+        }
+    },
+    data: dataExample,
+}
+
+gridView.render(data)
+
+</script>
+</body>
+</html>
