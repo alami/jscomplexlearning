@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.01</title>
+</head>
+<body>
+<div class="some">12345</div>
+<div class="other">12345</div>
+<hr>
+<button type="button" class="addYellow">add yellow</button>
+</body>
+<script>
+ window.onload = function () {
+        let div = document.querySelector('.some')
+        let other = document.querySelector('.other')
+        let btnY = document.querySelector('.addYellow')
+        let colors = ['#f90', '#f00', '#0f0'] //золотистый, крас, зел
+
+        div.addEventListener('click', setColor)
+        other.addEventListener('click', setColor)
+        /*div.addEventListener('click', function () {
+            num = Math.round(Math.random()*colors.length) //1-37 вычисляем рандомный цвет
+            div.style.color = colors[num]
+        })
+        other.addEventListener('click', function () {
+            num = Math.round(Math.random()*colors.length)
+            other.style.color = colors[num]
+        })*/
+         btnY.addEventListener('click', function () {
+             colors.push('#ff0')
+             btnY.parentNode.removeChild(btnY)
+         })
+        function setColor () {
+            num = Math.round(Math.random()*colors.length)
+            this.style.color = colors[num]
+        }
+
+
+    }
+</script>
+</html>

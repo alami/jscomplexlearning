@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.0</title>
+</head>
+<body>
+<div class="some">12345</div>
+</body>
+<script>
+ window.onload = function () {
+        let div = document.querySelector('.some')
+        div.onclick = function () {
+            div.innerHTML += '1'
+        }
+        div.onclick = function () {
+            div.innerHTML += '2'
+        }
+        div.addEventListener('click', function () {
+            div.innerHTML += '3'
+        })
+    }
+</script>
+</html>
