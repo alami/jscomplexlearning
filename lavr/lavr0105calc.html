@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.05 H/W calculator </title>
+</head>
+<body>
+<form>
+<input type="text" class="inp1"> +
+<input type="text" class="inp2">
+<input type="button" class="go" value="=">
+<span class="res">___</span>
+</form>
+</body>
+<script>
+ window.onload = function () {
+        let inp1 = document.querySelector('.inp1')
+        let inp2 = document.querySelector('.inp2')
+        let btn = document.querySelector('.go')
+        let res = document.querySelector('.res')
+     btn.addEventListener('click', function () {
+         let sum = parseInt(inp1.value) +  parseInt(inp2.value)
+         res.innerHTML = sum
+     })
+    }
+</script>
+</html>
