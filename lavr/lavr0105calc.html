@@ -6,7 +6,13 @@
 </head>
 <body>
 <form>
-<input type="text" class="inp1"> +
+<input type="text" class="inp1">
+<select class="operation">
+    <option value="sum">+</option>
+    <option value="dif">&mdash;</option>
+    <option value="mult">*</option>
+    <option value="div">/</option>
+</select>
 <input type="text" class="inp2">
 <input type="button" class="go" value="=">
 <span class="res">___</span>
@@ -14,13 +20,33 @@
 </body>
 <script>
  window.onload = function () {
+     const OPERATIONS = {
+         'sum': (a,b) => a + b,
+         'dif': (a,b) => a - b,
+        'mult': (a,b) => a * b,
+         'div': (a,b) => a / b,
+     }
         let inp1 = document.querySelector('.inp1')
         let inp2 = document.querySelector('.inp2')
-        let btn = document.querySelector('.go')
-        let res = document.querySelector('.res')
+        let btn  = document.querySelector('.go')
+        let resBox  = document.querySelector('.res')
+        let oper = document.querySelector('.operation')
      btn.addEventListener('click', function () {
-         let sum = parseInt(inp1.value) +  parseInt(inp2.value)
-         res.innerHTML = sum
+         let num1 = parseInt(inp1.value)
+         let num2 = parseInt(inp2.value)
+         let res
+         /*switch (oper.value) {
+             case 'sum': res = num1 + num2; break
+             case 'dif': res = num1 - num2; break
+             case 'mult': res = num1 * num2; break
+             case 'div': res = num1 / num2; break
+         }*/
+         res = OPERATIONS[oper.value](num1,num2)
+         resBox.innerHTML = res
+         btn.disabled = true
+     })
+     inp1.addEventListener('input', function () {
+         btn.disabled = false
      })
     }
 </script>
