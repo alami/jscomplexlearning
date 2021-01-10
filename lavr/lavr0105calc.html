@@ -42,12 +42,25 @@
              case 'div': res = num1 / num2; break
          }*/
          res = OPERATIONS[oper.value](num1,num2)
+         if (isNaN(res)) {
+             res = 'Error'
+         }
          resBox.innerHTML = res
          btn.disabled = true
      })
-     inp1.addEventListener('input', function () {
+     /*inp1.addEventListener('input', function () {
          btn.disabled = false
-     })
-    }
+     })*/
+     function btnEnable () {
+         btn.disabled = false
+     }
+     function cleanInput () {
+         this.value = this.value.replace(/[^0-9]/g,'')
+     }
+     [inp1,oper,inp2].forEach ( el => el.addEventListener('input', btnEnable))
+
+     inp1.addEventListener('input',cleanInput)
+     inp2.addEventListener('input',cleanInput)
+ }
 </script>
 </html>
