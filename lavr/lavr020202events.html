@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.02 v.02 02-events </title>
+</head>
+<style>
+    html, body {
+        margin: 40px;
+    }
+    .gallery img {
+        width: 400px;
+        border: 2px solid transparent;
+    }
+    .gallery img.active {
+        border: 2px solid red;
+    }
+</style>
+<body>
+<nav class="menu">
+    <a href="https://yandex.ru" target="_blank">Яндекс</a>
+    <a href="https://google.ru" target="_blank">Гугл</a>
+    <a href="https://mail.ru" target="_blank">Mail</a>
+</nav>
+<br>
+<div class="gallery">
+    <img src="img/1.jpg">
+    <img src="img/2.jpg">
+    <img src="img/3.jpg">
+</div>
+</body>
+<script>
+    window.onload = function () {
+        let links = document.querySelectorAll('nav a')
+        let images = document.querySelectorAll('.gallery img')
+        for (let i = 0; i < images.length; i++) {
+            images[i].addEventListener('click', imgClicked)
+        }
+        function imgClicked(e ) {
+            console.log(e)
+            if (!e.ctrlKey) {
+                images.forEach(el => el.classList.remove('active'))
+            }
+            this.classList.toggle('active')
+        }
+    }
+</script>
+
+</html>

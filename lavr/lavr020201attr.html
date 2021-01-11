@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.02 v.02 01-attr vs. DOM-properties </title>
+</head>
+<body>
+<form>
+<input type="checkbox" class="some" checked> Agree all
+<br>
+<input type="button" class="go" value="Send">
+</form>
+<div class="box">Text</div>
+</body>
+<script>
+ window.onload = function () {
+        let checkbox = document.querySelector('.some')
+        let btn = document.querySelector('.go')
+        let box = document.querySelector('.box')
+        checkbox.addEventListener('change', function () {
+            // console.log(checkbox.getAttribute('checked'))
+            console.log(checkbox.checked)
+            btn.setAttribute('disabled','disabled')
+            btn.disabled = !checkbox.checked
+        })
+    }
+</script>
+</html>
