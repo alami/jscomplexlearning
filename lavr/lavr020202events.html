@@ -34,14 +34,28 @@
         let links = document.querySelectorAll('nav a')
         let images = document.querySelectorAll('.gallery img')
         for (let i = 0; i < images.length; i++) {
-            images[i].addEventListener('click', imgClicked)
+            //images[i].addEventListener('click', imgClicked)
+            images[i].addEventListener('contextmenu', imgClicked)
+            images[i].addEventListener('mousedown', cancelEvent)
         }
         function imgClicked(e ) {
-            console.log(e)
+            // console.log(e)
+            e.preventDefault()
             if (!e.ctrlKey) {
                 images.forEach(el => el.classList.remove('active'))
             }
             this.classList.toggle('active')
+        }
+        function cancelEvent(e) {
+            e.preventDefault()
+        }
+        for (let i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', confirmTransfer)
+        }
+        function confirmTransfer(e) {
+            if (!confirm('Вы уверены,  что хотите перейти на этот сайт ?')) {
+                e.preventDefault()
+            }
         }
     }
 </script>
