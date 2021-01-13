@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.03 01 hw </title>
+</head>
+<style>
+    html, body { margin:  40px; }
+    .err { outline: 1px solid red; }  ---оперируем классом .err
+</style>
+<body>
+<form class="form">
+    Имя<br><input class="check" name="name" type="text"><br>
+    Телефон<br><input class="check" name="phone" type="text"><br>
+    Почта<br><input class="check" name="email" type="text"><br>
+    <input type="submit" value="Отправить">
+</form>
+</body>
+<script>
+    window.addEventListener('load', function () {
+        let form = document.querySelector('.form')
+        let inputs = form.querySelectorAll('.check')
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            for (let i = 0; i < inputs.length; i++) {
+                if (!(inputs[i].value.length > 0)) {
+                    inputs[i].classList.add('err')
+                }
+            }
+        })
+    })
+</script>
+</html>
