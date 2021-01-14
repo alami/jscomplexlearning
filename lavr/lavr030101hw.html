@@ -21,11 +21,20 @@
         let form = document.querySelector('.form')
         let inputs = form.querySelectorAll('.check')
         form.addEventListener('submit', function (e) {
-            e.preventDefault()
+            let err = false
             for (let i = 0; i < inputs.length; i++) {
                 if (!(inputs[i].value.length > 0)) {
                     inputs[i].classList.add('err')
+                    err = true
                 }
+            }
+            if (err) {
+                e.preventDefault()
+            }
+        })
+        form.addEventListener('focusin', function (e) {
+            if (e.target.classList.contains('check')) {
+                e.target.classList.remove('err')
             }
         })
     })
