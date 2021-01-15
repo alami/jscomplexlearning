@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.03 lesson 02 01 Menu</title>
+</head>
+<style>
+html, body { margin: 0; background: #eee; }
+p {margin: 40px; }
+.menu { position: fixed; top: 0; left: 0; background: #eee; color: #000; height: 50px; width: 100%; }
+.menu a { color: inherit; line-height: 50px; font-size: 20px; margin: 0 10px; transition: color 0.4s}
+.menu .menu_link-active { color: #f00; }
+.content { margin-top: 70px; }
+</style>
+<body>
+<div class="menu">
+    <a href="#about" class="menu_link menu_link-active">О курсе</a>
+    <a href="#price" class="menu_link">Стоимость</a>
+    <a href="#app" class="menu_link">Запись</a>
+    <a href="#nz" class="menu_link">Нз</a>
+</div>
+<div class="content">
+    <h2 id="about">О курсе</h2>
+    <p>asd asd ;lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd фlasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd htrh  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd  dfhd  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd ;lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd фlasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd htrh  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd  dfhd  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <h2 id="price">Стоимость</h2>
+    <p>asd asd ;lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd фlasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd htrh  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd  dfhd  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd ;lasd ;laaskdf;alsf </p>  <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd фlasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd htrh  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd  dfhd  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <h2 id="app">Запись</h2>
+    <p>asd asd ;lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd фlasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd htrh  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd  dfhd  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd ;lasd ;laaskdf;alsf </p>  <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd фlasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd htrh  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd  dfhd  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <h2 id="nz">Нз</h2>
+    <p>asd asd ;lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd фlasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd htrh  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd  dfhd  lasd ;laaskdf;alsf </p> <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd ;lasd ;laaskdf;alsf </p>
+    <p>asd asd фlasd ;laaskdf;alsf </p>
+    <p>asd asd htrh  lasd ;laaskdf;alsf </p>
+    <p>asd asd  dfhd  lasd ;laaskdf;alsf </p>
+</div>
+</body>
+<script>
+ window.onload = function () {
+    let menu = document.querySelector('.menu')
+    menu.addEventListener('click', function (e) {
+        let link = e.target
+        if(link.classList.contains('menu_link')) {
+            e.preventDefault()
+            menu.querySelector('.menu_link-active').classList.remove('menu_link-active')
+            link.classList.add('menu_link-active')
+            scrollToTarget(link.hash)
+        }
+    })
+     if (location.hash !== '') {
+         scrollToTarget(location.hash)
+     }
+     function scrollToTarget(id) {
+         let target = document.querySelector(id)
+         if (target !== null) {
+             let pos = target.offsetTop - 70 //-смещение
+             window.scrollTo({
+                 top: pos ,
+                 behavior: 'smooth'
+             })
+         }
+     }
+ }
+</script>
+</html>
