@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.04 02 FAQ </title>
+</head>
+<style>
+.faq .item {margin: 20px 0;}
+.faq .item .ask {font-size: 30px; margin-bottom: 10px; cursor: pointer;}
+.answer {background: #ff0; overflow: hidden; padding: 0 15px;
+    display: none; }
+.answer.open {
+    display: block; animation: show 0.5s;}
+@keyframes show { from{opacity: 0} to{opacity: 1} }
+</style>
+<body>
+<div class="faq">
+    <div class="item">
+        <div class="ask">1. Question Number 1</div>
+        <div class="answer">
+            <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+            <p>asd asd фlasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ask">2. Question Number 2</div>
+        <div class="answer">
+            <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+            <p>asd asd фlasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+            <p>asd asd  dfhd  lasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ask">3. Question Number 3</div>
+        <div class="answer">
+            <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+            <p>asd asd фlasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="ask">4. Question Number 1</div>
+        <div class="answer">
+            <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+            <p>asd asd фlasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+            <p>asd asd htrh  lasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+            <p>asd asd  dfhd  lasd ;ofgpdhadchdity;alsf </p> <p>asd asd ;lasd ;ofgpdhadchdity;alsf </p>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+ window.addEventListener('load', function () {
+        let faq = document.querySelector('.faq')
+        faq.addEventListener('click', function (e) {
+            if (e.target.classList.contains('ask')) {
+                toogleItem(e.target)
+            }
+        })
+        function toogleItem(ask) {
+            let answer = ask.nextElementSibling
+            if (answer.classList.contains('open')) {
+                let animate = answer.animate([
+                        {opacity: 1, transform: 'translateX(0)'},
+                        {opacity: 0, transform: 'translateX(100px)'}
+                    ],
+                    {duration: 500})
+                animate.addEventListener('finish', function () {
+                    answer.classList.remove('open')
+                })
+            } else {
+                answer.classList.add('open')
+            }
+        }
+    })
+</script>
+</html>
