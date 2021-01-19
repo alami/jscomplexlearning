@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.05 05 ООП</title>
+</head>
+<body>
+<div class="timer1"></div>
+<div class="timer2"></div>
+<button class="pr2buy">Buy</button>
+</body>
+<script>
+    window.addEventListener('load', function () {
+        let timer1 = {
+            box: document.querySelector('.timer1'),
+            time: 10,
+            interval: null,
+            start: function () {
+                timer1.interval = setInterval(function () {
+                    timer1.tick()
+                }, 1000)
+            },
+            tick: function () {
+                timer1.box.innerHTML = timer1.time
+                timer1.time--
+                if (timer1.time < 0) {
+                    timer1.stop()
+                }
+            },
+            stop: function () {
+                clearInterval(timer1.interval)
+            }
+        }
+        let timer2 = {
+            box: document.querySelector('.timer2'),
+            time: 5,
+            interval: null,
+            start: function () {
+                timer2.interval = setInterval(function () {
+                    timer2.tick()
+                }, 1000)
+            },
+            tick: function () {
+                timer2.box.innerHTML = timer2.time
+                timer2.time--
+                if (timer2.time < 0) {
+                    timer2.stop()
+                }
+            },
+            stop: function () {
+                clearInterval(timer2.interval)
+            }
+        }
+        timer1.start()
+        timer2.start()
+
+        // setTimeout(timer1.stop, 5000)
+        document.querySelector('.pr2buy').addEventListener('click',function () {
+            this.disabled = true
+            this.innerHTML = 'Скидка Ваша'
+            timer2.stop()
+        })
+
+        /*let box1 = document.querySelector('.timer1')
+
+        let time1 = 10
+        let interval1 = setInterval(function () {
+            box1.innerHTML = time1
+            time1--
+            if (time1 < 0) {
+                clearInterval(interval1)
+            }
+        }, 1000)*/
+    })
+</script>
+</html>

@@ -8,7 +8,7 @@
 <div class="some">12345</div>
 </body>
 <script>
- window.onload = function () {
+ window.addEventListener('load', function () {
         let div = document.querySelector('.some')
         div.onclick = function () {
             div.innerHTML += '1'
@@ -19,6 +19,6 @@
         div.addEventListener('click', function () {
             div.innerHTML += '3'
         })
-    }
+    })
 </script>
 </html>

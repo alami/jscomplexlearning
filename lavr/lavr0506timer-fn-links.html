@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.05 05 ООП</title>
+</head>
+<body>
+<div class="timer1"></div>
+<div class="timer2"></div>
+<button class="pr2buy">Buy</button>
+</body>
+<script>
+    window.addEventListener('load', function () {
+        let timer1 = {
+            box: document.querySelector('.timer1'),
+            time: 10,
+            interval: null,
+            start: tStart,
+            tick: tTick,
+            stop: tStop
+        }
+        let timer2 = {
+            box: document.querySelector('.timer2'),
+            time: 5,
+            interval: null,
+            start: tStart,
+            tick: tTick,
+            stop: tStop
+        }
+        timer1.start()
+        timer2.start()
+
+        // setTimeout(timer1.stop, 5000)
+        document.querySelector('.pr2buy').addEventListener('click',function () {
+            this.disabled = true
+            this.innerHTML = 'Скидка Ваша'
+            timer2.stop()
+        })
+
+        function tStart () {
+            this.interval = setInterval( () =>  {
+                this.tick()
+            }, 1000)
+        }
+        function tTick () {
+            this.box.innerHTML = this.time
+            this.time--
+            if (this.time < 0) {
+                this.stop()
+            }
+        }
+        function tStop () {
+            clearInterval(this.interval)
+        }
+    })
+</script>
+</html>
