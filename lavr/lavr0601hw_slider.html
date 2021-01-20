@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.06 v.01 H/W slider  </title>
+</head>
+<style>
+    html, body, ul, li{
+        margin: 0;
+        padding: 0;
+    }
+
+    .gallery{
+        width: 860px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .gallery .photos{
+        position: relative;
+        height: 670px;
+    }
+
+    .gallery .photos img{
+        width: 100%;
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    .gallery .photos img.showed{
+        opacity: 1;
+    }
+</style>
+<body>
+<br>
+<div class="gallery">
+<div class="photos">
+    <img src="img/1.jpg" class="showed">
+    <img src="img/2.jpg">
+    <img src="img/3.jpg">
+</div>
+<div class="buttons">
+    <input type="button" value="Назад" class="prev">
+    <input type="button" value="Вперёд" class="next">
+</div>
+</div>
+</body>
+<script>
+    window.addEventListener('load', function () {
+        let btnPrev = document.querySelector('.gallery .buttons .prev')
+        let btnNext = document.querySelector('.gallery .buttons .next')
+        let images = document.querySelectorAll('.gallery .photos img')
+        let i = 0;
+
+        btnPrev.addEventListener('click', function () {
+            images[i].classList.remove('showed')
+            i--
+            if (i<0) i = images.length - 1
+            images[i].classList.add('showed')
+        })
+
+        btnNext.addEventListener('click', function () {
+            images[i].classList.remove('showed')
+            i++
+            if (i>=images.length)  i = 0
+            images[i].classList.add('showed')
+        })
+
+    })
+</script>
+
+</html>
