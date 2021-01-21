@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.06 02 07 ООП extends</title>
+</head>
+<body>
+<div class="timer1"></div>
+<div class="timer2"></div>
+<button class="pr2buy">Buy</button>
+<div class="timer3"></div>
+</body>
+<script>
+    window.addEventListener('load', function () {
+        let timer1 = new Timer('.timer1',10)
+        let timer2 = new Timer('.timer2',5)
+        let timer3 = new TimerFormat('.timer3',15)
+
+        console.log(timer1)
+        timer1.start()
+        timer2.start()
+        timer3.start()
+
+        // setTimeout(timer1.stop, 5000)
+        document.querySelector('.pr2buy').addEventListener('click', function () {
+            this.disabled = true
+            this.innerHTML = 'Скидка Ваша'
+            timer2.stop()
+        })
+    })
+    class Timer {
+        constructor(selector, time) {
+            this.box = document.querySelector(selector)
+            this.time = time
+            this.interval
+        }
+        render () {
+            this.box.innerHTML = this.time
+        }
+        start () {
+            this.interval = setInterval(() => {
+                this.tick()
+            }, 1000)
+        }
+        tick () {
+            this.render()
+            this.time--
+            if (this.time < 0) {
+                this.stop()
+            }
+        }
+        stop () {
+            clearInterval(this.interval)
+        }
+    }
+    class TimerFormat extends Timer{
+        constructor(selector, time) {
+            super(selector, time);
+            this.a = 1
+        }
+        render () {
+            let h = parseInt(this.time/3600)
+            let m = parseInt(this.time%3600/60)
+            let s = parseInt(this.time%3600%60)
+            this.box.innerHTML = `${h}:${m}:${s}`
+        }
+        start() {
+            super.start();
+            console.log('timer started')
+        }
+    }
+
+</script>
+</html>
