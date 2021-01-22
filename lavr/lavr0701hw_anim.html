@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lavrik ch.06 v.01 H/W slider  </title>
+</head>
+<style>
+    html, body, ul, li{
+        margin: 0;
+        padding: 0;
+    }
+
+    .gallery{
+        width: 860px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .gallery .photos{
+        position: relative;
+        height: 670px;
+        overflow: hidden;
+    }
+
+    .gallery .photos img{
+        width: 100%;
+        position: absolute;
+        left: 0;
+        transform: translateX(100%);
+    }
+
+    .gallery .photos img.showed{
+        transform: translateX(0);
+    }
+</style>
+<body>
+<div class="gallery">
+    <div class="photos">
+        <img class="showed" src="img/1.jpg">
+        <img src="img/2.jpg">
+        <img src="img/3.jpg">
+    </div>
+    <div class="buttons">
+        <input class="prev" type="button" value="Назад">
+        <input class="next" type="button" value="Вперёд">
+    </div>
+</div>
+<div class="gallery gallery1">
+    <div class="photos">
+        <img class="showed" src="img/1.jpg">
+        <img src="img/2.jpg">
+        <img src="img/3.jpg">
+    </div>
+    <div class="buttons">
+        <input class="prev" type="button" value="Назад">
+        <input class="next" type="button" value="Вперёд">
+    </div>
+</div>
+</body>
+<script>
+    window.addEventListener('load', function () {
+        let s1 =new Slider('.gallery')
+        // s1.next()
+        let s2=new Slider('.gallery1')
+        setInterval(function () {
+            s1.next()
+        }, 3000)
+
+    })
+    class Slider {
+        constructor(selector) {
+            this.root = document.querySelector(selector)
+            this.btnPrev = this.root.querySelector('.buttons .prev')
+            this.btnNext = this.root.querySelector('.buttons .next')
+            this.images = this.root.querySelectorAll('.photos img')
+            this.i = 0;
+            this.animated = false
+
+            this.btnPrev.addEventListener('click', () => {this.prev()})
+            this.btnNext.addEventListener('click', () => {this.next()})
+
+            this.leftAnim = [
+                { transform: 'translateX(-100%)' },
+                { transform: 'translateX(0%)' }
+            ]
+            this.rightAnim = [
+                { transform: 'translateX(100%)' },
+                { transform: 'translateX(0%)' }
+            ]
+        }
+        prev() {
+            if (!this.animated) {
+                let imgHide = this.images[this.i]
+                this.i = this.i > 0 ? this.i - 1 : this.images.length - 1
+                this.toogleSlides(imgHide, this.images[this.i], false)
+            }
+        }
+        next() {
+            if (!this.animated) {
+                let imgHide = this.images[this.i]
+                this.i = this.i < this.images.length - 1 ? this.i + 1 : 0
+                this.toogleSlides(imgHide, this.images[this.i])
+            }
+        }
+        toogleSlides(imgHide, showImg, isNext = true){
+            this.animated = true;
+
+            showImg.classList.add('showed')
+            showImg.animate(isNext ? this.rightAnim : this.leftAnim, {duration: 500})
+
+            let hideAnimate = imgHide.animate(isNext ? this.leftAnim : this.rightAnim,
+                {duration: 500, direction: 'reverse'})
+            hideAnimate.addEventListener('finish', () => {
+                imgHide.classList.remove('showed')
+                this.animated = false
+            })
+
+        }
+    }
+</script>
+
+</html>
