@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Vue Basics</title>
+    <link href="css/theme.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container" id="app">
+    <div class="card">
+        <h1>{{title}}</h1>
+        <div class="form-control">
+            <input type="text"
+                   v-bind:placeholder="placeholder"
+                   v-bind:value="inputValue"
+                   v-on:input="inputChangeHandler"
+                   v-on:keypress.enter="addNewNotes"
+            >
+        </div>
+        <!--<h2>inputValue: {{inputValue}}</h2>-->
+        <button class="btn" v-on:click="addNewNotes">Добавить</button>
+        <hr>
+        <ul class="list">
+            <li class="list-item" v-for="MyNote in notes">{{MyNote}}</li>
+        </ul>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+const App = {
+    data () {
+        return {
+            placeholder: 'Введите название заметки',
+            title: 'Список заметок',
+            inputValue: '',
+            notes: ['Заметка 1', 'Заметка 2'],
+        }
+    },
+    methods: {
+        inputChangeHandler(event){
+            // console.log('inputChangeHandler', event.target.value)
+            this.inputValue = event.target.value
+        },
+        addNewNotes(){
+            this.notes.push(this.inputValue)
+            this.inputValue = ''
+        },
+        /*inputKeyPress(event) {
+            // console.log(event.key)
+            if (event.key === 'Enter') {
+                this.addNewNotes()
+            }
+        }*/
+
+    }
+}
+Vue.createApp(App).mount('#app')
+
+</script>
+</body>
+</html>

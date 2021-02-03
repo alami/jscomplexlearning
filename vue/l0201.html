@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Vue Basics</title>
+    <link href="css/theme.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container pt-5" id="app">
+    <div class="card center">
+        <h1>{{title}} : {{(counter + 2)*3}}</h1>
+        <div>
+            <botton class="btn primary" v-on:click="counter++">+</botton>
+            <botton class="btn danger" v-on:click="counter--">-</botton>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+const App = {
+    data () {
+        return {
+            counter: 0,
+             title: 'Counter'
+        }
+    }
+}
+Vue.createApp(App).mount('#app')
+
+</script>
+</body>
+</html>
