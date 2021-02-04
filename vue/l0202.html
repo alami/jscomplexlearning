@@ -9,21 +9,41 @@
 <body>
 <div class="container" id="app">
     <div class="card">
-        <h1>{{title}}</h1>
+        <h1 :style="{
+            color: inputValue.length<5?'red':'blue',
+            fontSize: inputValue.length<6?'2rem':'1.5rem'
+        }">{{title}}</h1>
         <div class="form-control">
             <input type="text"
-                   v-bind:placeholder="placeholder"
-                   v-bind:value="inputValue"
-                   v-on:input="inputChangeHandler"
-                   v-on:keypress.enter="addNewNotes"
+                   :placeholder="placeholder"
+                   @keypress.enter="addNewNotes"
+                   v-model="inputValue"
             >
+            <!-- :value="inputValue"
+                 @input="inputChangeHandler" -->
         </div>
         <!--<h2>inputValue: {{inputValue}}</h2>-->
-        <button class="btn" v-on:click="addNewNotes">Добавить</button>
+        <button class="btn" @click="addNewNotes">Добавить</button>
         <hr>
-        <ul class="list">
-            <li class="list-item" v-for="MyNote in notes">{{MyNote}}</li>
+        <ul class="list" v-if="notes.length !== 0">
+            <li class="list-item" v-for="(MyNote, idx) in notes">
+                <span :class="[
+                    {'primary': MyNote.length>5},
+                    'bold'
+                ]">{{idx}} - {{toUpperCase(MyNote)}}</span>
+<!--
+                <span :class="{
+                    'primary': true,
+                    'bold': MyNote.length>5
+                }">{{idx}} - {{toUpperCase(MyNote)}}</span>
+-->
+<!--                <span :class="MyNote.length>5?'primary':'bold'">{{idx}} - {{toUpperCase(MyNote)}}</span>-->
+                <button class="btn danger" @click="removeNote(idx)">Удалить</button>
+            </li>
+            <hr>
+            <li><strong>Общее кол-во: {{notes.length}} / удвоенное {{doubleCountСomputed}} </strong></li>
         </ul>
+        <div v-else>Заметок нет, добавьте </div>
     </div>
 </div>
 
@@ -40,21 +60,47 @@ const App = {
         }
     },
     methods: {
-        inputChangeHandler(event){
+        /*inputChangeHandler(event){
             // console.log('inputChangeHandler', event.target.value)
             this.inputValue = event.target.value
-        },
+        },*/
         addNewNotes(){
-            this.notes.push(this.inputValue)
-            this.inputValue = ''
+            if (this.inputValue !== '') {
+                this.notes.push(this.inputValue)
+                this.inputValue = ''
+            }
         },
+        /*doubleCount(){
+            console.log('doubleCount')
+            return this.notes.length*2
+        },*/
+        toUpperCase(item) {
+            return item.toUpperCase()
+        },
+        removeNote(idx){
+            // console.log('removeNote ', idx, ev)
+            this.notes.splice(idx, 1)
+        }
         /*inputKeyPress(event) {
             // console.log(event.key)
             if (event.key === 'Enter') {
                 this.addNewNotes()
             }
         }*/
-
+    },
+    computed: {
+        doubleCountСomputed(){
+            console.log('doubleCountСomputed')
+            return this.notes.length*2
+        },
+    },
+    watch: {
+        inputValue(value) {
+            // console.log('Input value changed',value)
+            if (value.length>10) {
+                this.inputValue = ''
+            }
+        }
     }
 }
 Vue.createApp(App).mount('#app')
