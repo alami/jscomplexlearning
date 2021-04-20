@@ -1,8 +1,16 @@
-const COORDS_LS = 'coords'
+const COORDS_LS = 'coords'   //https://openweathermap.org
 
-
+function saveCoords(positionObj) {
+    localStorage.setItem(COORDS_LS, JSON.stringify(positionObj))
+}
 function geoSuccessHandler(position) {
-    console.log(position)
+    const latitude = position.coords.latitude
+    const longitude = position.coords.longitude
+    const positionObj = {
+        latitude,
+        longitude
+    }
+    saveCoords(positionObj)
 }
 function geoErrorHandler() {
     console.log('Error in finding of position !')
