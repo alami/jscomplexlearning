@@ -13,6 +13,8 @@ const CANVAS_SIZE = 700
 canvas.width = CANVAS_SIZE
 canvas.height = CANVAS_SIZE
 
+ctx.fillStyle = 'white'
+ctx.fillRect(0,0,CANVAS_SIZE,CANVAS_SIZE)
 ctx.lineWidth = 2.5
 ctx.strokeStyle  = INITIAL_COLOR
 ctx.fillStyle = INITIAL_COLOR
@@ -65,12 +67,27 @@ function handleCanvasClick(event) {
         ctx.fillRect(0,0,CANVAS_SIZE,CANVAS_SIZE)
     }
 }
+
+function handleCM(event) {
+    event.preventDefault()
+}
+
+function handleSaveClick(event) {
+    const image = canvas.toDataURL('image/png') //jpeg') //
+    //console.log(image)  // try..copy...&insert in browser addr link...
+    const link = document.createElement('a')
+    link.href = image //
+    link.download = 'PaintJS[Export]' // <a href="imageBytes" download="fileName"> !!
+    link.click()                      // imitation of click !!
+
+}
 if (canvas) {
     canvas.addEventListener('mousemove', onMouseMove);
     canvas.addEventListener('mousedown', onMouseDown);
     canvas.addEventListener('mouseup', StopPainting);
     canvas.addEventListener('mouseleave', StopPainting);
     canvas.addEventListener('click', handleCanvasClick);
+    canvas.addEventListener('contextmenu', handleCM);
 }
 
 Array.from(colors).forEach(color => color.addEventListener('click',handleColorClick))
@@ -81,4 +98,8 @@ if (range) {
 
 if (mode) {
     mode.addEventListener('click', handleModeClick)
+}
+
+if (saveBtn) {
+    saveBtn.addEventListener('click', handleSaveClick)
 }
