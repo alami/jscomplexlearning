@@ -1,15 +1,19 @@
 const COORDS_LS = 'coords'
+const API_KEY = 'bdf3d54816461204b5749e67607bcc56' //https://openweathermap.org
+const weatherContainer = document.querySelector('.js-weather')
 
 function getWeather(lat, lng) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric `)
         .then(function (response) {
             return (response.json())
         }).then(function (json) {
-        console.log(json)
-    })
+            //console.log(json)
+            const temp = json.main.temp
+            const place = json.name
+        weatherContainer.innerHTML = `${temp} ${place} `
+        })
 }
 
-const API_KEY = 'bdf3d54816461204b5749e67607bcc56' //https://openweathermap.org
 function saveCoords(positionObj) {
     localStorage.setItem(COORDS_LS, JSON.stringify(positionObj))
 }
