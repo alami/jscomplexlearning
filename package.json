@@ -1,8 +1,26 @@
 {
   "dependencies": {
-    "inquirer": "^8.2.1"
+    "inquirer": "^8.2.1",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "@types/inquirer": "^8.2.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "jscomplexlearning",
+  "description": "\"# jscomplexlearning\"",
+  "version": "1.0.0",
+  "main": "jscomplexlearning.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alami/jscomplexlearning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alami/jscomplexlearning/issues"
+  },
+  "homepage": "https://github.com/alami/jscomplexlearning#readme"
 }
