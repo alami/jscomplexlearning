@@ -1,8 +1,7 @@
 function myreq (api,mycb) {
     const fetch = require("node-fetch");
     var urlencoded = new URLSearchParams();
-    urlencoded.append("AdminLogin", "apiuser01");
-    urlencoded.append("AdminPassword", "apiuserA1");
+    urlencoded.append("AdminLogin", "");
 
     var requestOptions = {
         method: 'POST',
