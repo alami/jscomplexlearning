@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ch05-073</title>
+</head>
+<body>
+<header>
+    <h1>Угадай число: 1..20</h1>
+    <button class="btn again">Сначала!</button>
+    <div class="question">???</div>
+</header>
+<main>
+    <section class="left">
+        <input type="number" class="number-input" />
+        <button class="btn check">Check!</button>
+    </section>
+    <section class="right">
+        <p class="guess-message">начни угадывать</p>
+        <p class="label-score">Очки: <span class="score">20</span></p>
+        <p class="label-highscore">Best result: <span class="highscore">0</span></p>
+    </section>
+</main>
+</body>
+</html>
+<script>
+'use strict'
+let secretNumber = Math.trunc(Math.random() * 20) + 1 //угадываемое число
+let score=20 //кол-во очков игры --переменная состояния приложения
+let highscore=0
+
+function displayGuessMessage(msg) {
+    document.querySelector('.guess-message').textContent = msg
+}
+console.log(secretNumber)
+document.querySelector('.check').addEventListener('click', function () {
+    const guessingNumber = +document.querySelector('.number-input').value
+    console.log(guessingNumber)
+// no input
+    if (!guessingNumber) {
+        displayGuessMessage('введите число')
+// won
+    } else if (guessingNumber === secretNumber) {
+        displayGuessMessage('Правильно!')
+        document.querySelector('body').style.backgroundColor = 'rgb(9,250,21)'//'green'
+        document.querySelector('.question').textContent = secretNumber
+        document.querySelector('.question').style.width = '50rem'//'green'
+        if (score>highscore) {
+            highscore = score
+            document.querySelector('.highscore').textContent = highscore
+        }
+// too high
+    } else {
+        if (score>1) {
+            displayGuessMessage((guessingNumber < secretNumber)?'Меньше!':'Больше!')
+            score--
+            document.querySelector('.score').textContent = score
+        } else {
+            displayGuessMessage('Game over!')
+        }
+    }
+})
+
+document.querySelector('.again').addEventListener('click', function () {
+    secretNumber = Math.trunc(Math.random() * 20) + 1 //угадываемое число
+    score=20
+    document.querySelector('.score').textContent = score
+    document.querySelector('.question').textContent = '???'
+    displayGuessMessage('начни угадывать')
+    document.querySelector('body').style.backgroundColor = 'white'//'green'
+    document.querySelector('.question').style.width = '25rem'//'green'
+    document.querySelector('.number-input').value = ''
+    console.log(secretNumber)
+})
+</script>

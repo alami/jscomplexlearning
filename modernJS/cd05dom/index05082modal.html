@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>82: modal window</title>
+    <link href="index05082.css" rel="stylesheet"></head>
+<body>
+<button class="show-modal-window">modal window 1</button>
+<button class="show-modal-window">modal window 2</button>
+<button class="show-modal-window">modal window 3</button>
+
+<div class="modal-window hidden">
+    <button class="close-modal-window">&times;</button>
+    <h1>Modal Window</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Aliquam id enim vehicula justo pretium interdum quis a sapien.
+        Fusce iaculis aliquet justo, faucibus cursus erat tempus et.
+        Nullam vitae purus sed erat tempus dictum.
+        Nam hendrerit libero vel sodales vestibulum.
+        ras quis ex vel dolor semper dapibus.
+        Aenean porttitor lectus magna, ac sagittis urna molestie eget.
+        Sed fermentum tellus at tortor gravida rhoncus.
+        Mauris maximus, nibh sit amet viverra molestie, dolor orci imperdiet diam,
+        at rutrum dolor odio eget tortor. Sed odio ex, bibendum in cursus vel,
+        placerat non est. Ut et turpis molestie, vulputate felis nec, dignissim dui.
+        Praesent porttitor consectetur aliquet.
+    </p>
+</div>
+<div class="overlay hidden"></div>
+<script>
+    'use strict';
+
+    const modalWindow = document.querySelector('.modal-window');
+    const overlay = document.querySelector('.overlay');
+    const btnCloseModalWindow = document.querySelector('.close-modal-window');
+    const btnsShowModalWindow = document.querySelectorAll('.show-modal-window');
+    console.log(btnsShowModalWindow);
+
+    const showModalWindow = function () {
+        console.log('Click!');
+        modalWindow.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+    };
+
+    const closeModalWindow = function () {
+        modalWindow.classList.add('hidden');
+        overlay.classList.add('hidden');
+    };
+
+    for (let i = 0; i < btnsShowModalWindow.length; i++) {
+        btnsShowModalWindow[i].addEventListener('click', showModalWindow);
+    }
+
+    btnCloseModalWindow.addEventListener('click', closeModalWindow);
+    overlay.addEventListener('click', closeModalWindow);
+
+    document.addEventListener('keydown', function (e) {
+        console.log(e.key);
+
+        if (e.key === 'Escape' && !modalWindow.classList.contains('hidden')) {
+            closeModalWindow();
+        }
+    });
+</script>
+</body>
+</html>
